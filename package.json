@@ -1,0 +1,35 @@
+{
+  "name": "asdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HouJushang/asdf.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HouJushang/asdf/issues"
+  },
+  "homepage": "https://github.com/HouJushang/asdf#readme",
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.8.1",
+    "koa-swig": "^2.2.1",
+    "koa2-cors": "^2.0.5",
+    "log4js": "^2.5.3",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.35.2",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.1"
+  }
+}
