@@ -1,5 +1,10 @@
 const sequelize = require('../bin/sequelize')
-require('./news');
-require('./news_data');
-require('./menu');
+
+// userPermission
+require('./userPermission/admin');
+require('./userPermission/adminRole');
+require('./userPermission/menu');
+require('./userPermission/role');
+require('./userPermission/roleMenu');
+
 module.exports = sequelize;
