@@ -23,5 +23,5 @@ sequelize.authenticate().then(() => {
 }).catch(err => {
     console.error('authenticateError:', err.name);
 });
+sequelize.sync();
 module.exports = sequelize;
-// sequelize.sync();
