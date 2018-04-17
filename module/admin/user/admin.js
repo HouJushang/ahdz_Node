@@ -1,7 +1,7 @@
 /**
  * Created by hou on 2018/4/15.
  */
-const router = require('../router');
+const router = require('../../router');
 const Sequelize = require('Sequelize')
 const Op = Sequelize.Op
 const adminModel = _loadModel('userPermission', 'admin');

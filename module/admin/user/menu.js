@@ -1,4 +1,4 @@
-const router = require('../router');
+const router = require('../../router');
 const menuModel = _loadModel('userPermission', 'menu');
 router.get('/admin/menu', async (ctx) => {
     try {

@@ -1,4 +1,2 @@
-require('./admin')
-require('./menu')
-require('./role')
-require('./adminRole')
+require('./user')
+require('./content')
