@@ -20,3 +20,10 @@ global._errorResponse = function(message = '操作失败', data = {}){
         message
     }
 }
+global._authErrorResponse = function(message = '操作失败', data = {}){
+    return {
+        code: 'authError',
+        data,
+        message
+    }
+}
