@@ -3,9 +3,9 @@
  */
 const router = require('../router');
 const fs = require('fs');
-const os = require('os');
+const koaBody = require('koa-body');
 const path = require('path');
-router.post('/upload', async (ctx) => {
+router.post('/upload', koaBody({ multipart: true }), async (ctx) => {
     try {
         const file = ctx.request.body.files.file;
         const extensionName = file.name.split('.')[1];
@@ -19,5 +19,5 @@ router.post('/upload', async (ctx) => {
     }
 })
 
-const ueditor = require('koa2-ueditor')
+const ueditor = require('../../nodeModules/koa2-ueditor')
 router.all('/editor/controller', ueditor('public'))

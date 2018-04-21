@@ -1,1 +1,2 @@
 require('./upload')
+require('./captcha')

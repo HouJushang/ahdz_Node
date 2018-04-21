@@ -6,11 +6,11 @@ const sequelize = _loadSequelize();
 const category = require('./category')
 const News = sequelize.define('news', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-    title: { type: Sequelize.STRING, allowNull: false },
-    description: { type: Sequelize.STRING, allowNull: true},
-    keywords: { type: Sequelize.STRING, allowNull: true },
-    image: { type: Sequelize.STRING, allowNull: true },
-    content: {type: Sequelize.STRING, allowNull: false}
+    title: {type: Sequelize.STRING, allowNull: false},
+    author: {type: Sequelize.STRING, allowNull: true},
+    origin: {type: Sequelize.STRING, allowNull: true},
+    thumb: {type: Sequelize.STRING, allowNull: true},
+    content: {type: Sequelize.STRING, allowNull: true}
 });
 News.belongsTo(category);
 module.exports = News;

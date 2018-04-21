@@ -22,12 +22,17 @@ router.post('/login', async (ctx) => {
             ctx.body = _errorResponse('该用户角色未分配，联系管理员')
             return false
         }
-        ctx.session.admin = 111;
+        ctx.session.loginInfo = {adminResult, adminRoleResult};
         ctx.body = _successResponse('登录成功', {adminResult, adminRoleResult});
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
 router.post('/loginOut', async (ctx) => {
-    ctx.session.admin = null
+    try {
+        ctx.session.loginInfo = null
+        ctx.body = _successResponse('退出登录成功');
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
 });
