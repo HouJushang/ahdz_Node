@@ -4,12 +4,14 @@
 const router = require('../../router');
 const Sequelize = require('Sequelize')
 const Op = Sequelize.Op
-const categoryModel = _loadModel('content', 'category');
+const categoryModel = _loadModel('content', 'category')
+const getCategory = _loadQuery('category', 'getCategoryById')
+const getContentListWithPage = _loadQuery('content', 'getContentListWithPage')
 const defaultUrl = '/admin/content';
-router.get(defaultUrl, async (ctx) => {
-    q
+router.get('/admin/content/:categryId', async (ctx) => {
     try {
-        const result = await roleModel.findAll();
+        const categoryResult = await getCategory(ctx.params.categryId);
+        const result = await getContentListWithPage(categoryResult.model, ctx.request.body)
         ctx.body = _successResponse('栏目列表获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)

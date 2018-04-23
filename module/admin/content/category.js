@@ -4,24 +4,34 @@
 const router = require('../../router');
 const Sequelize = require('Sequelize')
 const Op = Sequelize.Op
-const roleModel = _loadModel('content', 'category');
+const categoryModel = _loadModel('content', 'category');
+const getCategoryById = _loadQuery('category', 'getCategoryById')
 const defaultUrl = '/admin/category';
 router.get(defaultUrl, async (ctx) => {
     try {
-        const result = await roleModel.findAll();
+        const result = await categoryModel.findAll();
         ctx.body = _successResponse('栏目列表获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
+router.get('/admin/categoryById/:categoryId', async (ctx) => {
+    try {
+        const categoryResult = await getCategoryById(ctx.params.categoryId);
+        ctx.body = _successResponse('栏目详情', categoryResult);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+
+})
 router.post(defaultUrl, async (ctx) => {
     try {
-        var result = await roleModel.count({where: {name: ctx.request.body.name}});
+        var result = await categoryModel.count({where: {name: ctx.request.body.name}});
         if(result > 0){
             ctx.body = _errorResponse('该栏目已经存在', result);
             return false;
         }
-        var result = await roleModel.create(ctx.request.body);
+        var result = await categoryModel.create(ctx.request.body);
         ctx.body = _successResponse('栏目添加成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
@@ -29,12 +39,12 @@ router.post(defaultUrl, async (ctx) => {
 })
 router.put(defaultUrl, async (ctx) => {
     try {
-        var result = await roleModel.count({where: {name: ctx.request.body.name, id: {[Op.ne]: ctx.request.body.id}}});
+        var result = await categoryModel.count({where: {name: ctx.request.body.name, id: {[Op.ne]: ctx.request.body.id}}});
         if(result > 0){
             ctx.body = _errorResponse('该栏目已经存在', result);
             return false;
         }
-        var result = await roleModel.update(ctx.request.body, {where: {id: ctx.request.body.id}})
+        var result = await categoryModel.update(ctx.request.body, {where: {id: ctx.request.body.id}})
         if(result) {
             ctx.body = _successResponse('栏目更新成功', result);
         }else{
@@ -46,7 +56,7 @@ router.put(defaultUrl, async (ctx) => {
 })
 router.delete(defaultUrl, async (ctx) => {
     try {
-        const result = await roleModel.destroy({where: ctx.request.query})
+        const result = await categoryModel.destroy({where: ctx.request.query})
         if(result) {
             ctx.body = _successResponse('角色删除成功', result);
         }else{
