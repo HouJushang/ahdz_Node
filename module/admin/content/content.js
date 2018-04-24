@@ -7,11 +7,21 @@ const Op = Sequelize.Op
 const categoryModel = _loadModel('content', 'category')
 const getCategory = _loadQuery('category', 'getCategoryById')
 const getContentListWithPage = _loadQuery('content', 'getContentListWithPage')
+const getContentById = _loadQuery('content', 'getContentById')
 const defaultUrl = '/admin/content';
-router.get('/admin/content/:categryId', async (ctx) => {
+router.get('/admin/content/:categoryId', async (ctx) => {
     try {
-        const categoryResult = await getCategory(ctx.params.categryId);
-        const result = await getContentListWithPage(categoryResult.model, ctx.request.body)
+        const categoryResult = await getCategory(ctx.params.categoryId);
+        const result = await getContentListWithPage(categoryResult.model, {})
+        ctx.body = _successResponse('栏目列表获取成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+router.get('/admin/getOneContent', async (ctx) => {
+    try {
+        const categoryResult = await getCategory(ctx.query.categoryId);
+        const result = await getContentById(categoryResult.model, ctx.query.id);
         ctx.body = _successResponse('栏目列表获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)

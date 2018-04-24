@@ -10,5 +10,6 @@ require('./userPermission/roleMenu');
 //
 require('./content/category');
 require('./content/news');
+require('./content/banner');
 
 module.exports = sequelize;
