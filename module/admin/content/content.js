@@ -3,16 +3,13 @@
  */
 const router = require('../../router');
 const Sequelize = require('Sequelize')
-const Op = Sequelize.Op
-const categoryModel = _loadModel('content', 'category')
 const getCategory = _loadQuery('category', 'getCategoryById')
 const getContentListWithPage = _loadQuery('content', 'getContentListWithPage')
 const getContentById = _loadQuery('content', 'getContentById')
-const defaultUrl = '/admin/content';
-router.get('/admin/content/:categoryId', async (ctx) => {
+router.post('/admin/listContent/:categoryId', async (ctx) => {
     try {
         const categoryResult = await getCategory(ctx.params.categoryId);
-        const result = await getContentListWithPage(categoryResult.model, {})
+        const result = await getContentListWithPage(categoryResult.model, {categoryId: ctx.params.categoryId}, ctx.request.body.pageInfo);
         ctx.body = _successResponse('栏目列表获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
@@ -22,45 +19,64 @@ router.get('/admin/getOneContent', async (ctx) => {
     try {
         const categoryResult = await getCategory(ctx.query.categoryId);
         const result = await getContentById(categoryResult.model, ctx.query.id);
-        ctx.body = _successResponse('栏目列表获取成功', result);
+        ctx.body = _successResponse('内容获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
 router.post('/admin/content/:categryId', async (ctx) => {
     try {
-        const categoryResult = await categoryModel.findOne({where: {id: ctx.params.categryId}});
-        const contentModel = _loadModel('content', categoryResult.model)
+        const categoryResult = await getCategory(ctx.params.categryId);
+        Object.assign(ctx.request.body, {
+            status : categoryResult.roleId != 0 ? 0 : 1,
+            sysadd : 0, //网站后台人员
+            addname: ctx.session.loginInfo.adminResult.username,
+        })
+        console.log(ctx.request.body)
+        const contentModel = _loadModel('contentModel', categoryResult.model)
         const contentResult = await contentModel.create(ctx.request.body);
-        ctx.body = _successResponse('栏目添加成功', contentResult);
+        ctx.body = _successResponse('内容添加成功', contentResult);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
-router.put(defaultUrl, async (ctx) => {
+router.put('/admin/content/:categryId', async (ctx) => {
     try {
-        var result = await roleModel.count({where: {name: ctx.request.body.name, id: {[Op.ne]: ctx.request.body.id}}});
-        if (result > 0) {
-            ctx.body = _errorResponse('该栏目已经存在', result);
-            return false;
-        }
-        var result = await roleModel.update(ctx.request.body, {where: {id: ctx.request.body.id}})
+        const categoryResult = await getCategory(ctx.params.categryId);
+        const contentModel = _loadModel('contentModel', categoryResult.model);
+        var result = await contentModel.update(ctx.request.body, {where: {id: ctx.request.body.id}})
         if (result) {
-            ctx.body = _successResponse('栏目更新成功', result);
+            ctx.body = _successResponse('内容更新成功', result);
         } else {
-            ctx.body = _errorResponse('栏目更新失败');
+            ctx.body = _errorResponse('内容更新失败');
         }
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
-router.delete(defaultUrl, async (ctx) => {
+router.put('/admin/checkContent/:categryId', async (ctx) => {
     try {
-        const result = await roleModel.destroy({where: ctx.request.query})
+        const categoryResult = await getCategory(ctx.params.categryId);
+        const contentModel = _loadModel('contentModel', categoryResult.model);
+        var result = await contentModel.update({status:  ctx.request.body.status}, {where: {id: ctx.request.body.id}})
         if (result) {
-            ctx.body = _successResponse('角色删除成功', result);
+            ctx.body = _successResponse('内容更新成功', result);
         } else {
-            ctx.body = _errorResponse('角色删除失败');
+            ctx.body = _errorResponse('内容更新失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+router.delete('/admin/content/:categryId', async (ctx) => {
+    try {
+        const categoryResult = await getCategory(ctx.params.categryId);
+        const contentModel = _loadModel('contentModel', categoryResult.model);
+        const result = await contentModel.destroy({where: {id: ctx.request.query.id}})
+        if (result) {
+            ctx.body = _successResponse('删除成功', result);
+        } else {
+            ctx.body = _errorResponse('删除失败');
         }
     } catch (e) {
         ctx.body = _errorResponse(e.message)

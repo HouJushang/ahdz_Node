@@ -9,7 +9,7 @@ require('./userPermission/roleMenu');
 
 //
 require('./content/category');
-require('./content/news');
-require('./content/banner');
+require('./contentModel/news');
+require('./contentModel/slide');
 
 module.exports = sequelize;

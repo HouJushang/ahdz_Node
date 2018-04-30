@@ -6,10 +6,15 @@ const Sequelize = require('Sequelize')
 const Op = Sequelize.Op
 const categoryModel = _loadModel('content', 'category');
 const getCategoryById = _loadQuery('category', 'getCategoryById')
+const roleMode = _loadModel('userPermission', 'role');
 const defaultUrl = '/admin/category';
 router.get(defaultUrl, async (ctx) => {
     try {
-        const result = await categoryModel.findAll();
+        const result = await categoryModel.findAll({
+            include: [
+                {model: roleMode}
+            ]
+        });
         ctx.body = _successResponse('栏目列表获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
