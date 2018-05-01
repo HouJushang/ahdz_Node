@@ -79,9 +79,9 @@
                 <div class="nav_list">
                     <p class="nav_a">课程培训</p>
                     <div class="nav_list_con">
-                        <a href="curriculum_list.html">精品课程</a>
-                        <a href="expert_list.html">专家智库</a>
-                        <a href="mechanism_list.html">电商培训机构</a>
+                        <a href="/category/20">精品课程</a>
+                        <a href="/category/21">专家智库</a>
+                        <a href="/category/23">电商培训机构</a>
                     </div>
                 </div>
             </div>

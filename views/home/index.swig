@@ -1025,7 +1025,7 @@
                                 <div class="contss">
                                     <div class="tit clr">
                                         <div class="name fl">热门电商培训机构</div>
-                                        <a href="mechanism_list.html" class="more fr">更多 &gt;</a>
+                                        <a href="/category/21" class="more fr">更多 &gt;</a>
                                     </div>
                                     <div class="list">
                                         <a href="news_details_5.html">● &nbsp;合肥云聚职业培训学校</a>
@@ -1041,7 +1041,7 @@
                                 <div class="contss">
                                     <div class="tit clr">
                                         <div class="name zjzk fl">专家智库</div>
-                                        <a href="expert_list.html" class="more fr">更多 &gt;</a>
+                                        <a href="/category/23" class="more fr">更多 &gt;</a>
                                     </div>
                                     <div class="ren_list">
                                         <a href="expert_details.html" class="clr">
@@ -1088,7 +1088,7 @@
                 <div class="w1200">
                     <div class="index_end_tab clr">
                         <div class="name jpkc fl">精品课程</div>
-                        <a href="curriculum_list.html" class="more">查看更多 &gt;</a>
+                        <a href="/category/20" class="more">查看更多 &gt;</a>
                     </div>
                     <div class="product_list">
                         <div class="list">
