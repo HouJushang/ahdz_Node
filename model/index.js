@@ -11,5 +11,7 @@ require('./userPermission/roleMenu');
 require('./content/category');
 require('./contentModel/news');
 require('./contentModel/slide');
+require('./contentModel/yuanqu');
+require('./contentModel/qiye');
 
 module.exports = sequelize;

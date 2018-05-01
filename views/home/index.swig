@@ -1,99 +1,29 @@
 {% extends 'layout.swig'  %}
+{% macro imgSlide(data) %}
+    <ul class="clr index_news_left_ul">
+        {% for key, val in data %}
+            <li>
+                <a href="{{ val.link }}">
+                    <div class="img">
+                        <img src="{{ val.image }}" width="100%" height="100%">
+                    </div>
+                    <h2>{{ val.title }}</h2>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul class="hd clr"></ul>
+{% endmacro %}
 {% block content %}
     <div class="wapper">
         <div class="index_wrap section_1">
             <div class="index_news">
                 <div class="w1200 clr">
                     <div class="index_news_left fl" id="index_news_left_1">
-                        <ul class="clr index_news_left_ul">
-                            <li>
-                                <a href="news_details_index_2.html">
-                                    <div class="img">
-                                        <img src="images/img.jpg" width="100%" height="100%">
-                                    </div>
-                                    <h2>2018安徽省电商创业大赛报名正式开始！</h2>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="news_details_index_2.html">
-                                    <div class="img">
-                                        <img src="images/mytjt.jpg" width="100%" height="100%">
-                                    </div>
-                                    <h2>新鼎明创新创业园区火热招商中，欢迎您的加入！</h2>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="news_details_index_2.html">
-                                    <div class="img">
-                                        <img src="images/pxkct.jpg" width="100%" height="100%">
-                                    </div>
-                                    <h2>2018安徽省电商创业大赛报名正式开始！</h2>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="hd clr"></ul>
+                        {{ imgSlide(slide10) }}
                     </div>
                     <div class="index_news_right">
-                        <div class="conts">
-                            <div class="news_tab clr">
-                                <div class="tab_list fl clr">
-                                    <div class="list on">产业资讯</div>
-                                    <div class="list">最新政策</div>
-                                    <div class="list">通知公告</div>
-                                    <div class="list">研究报告</div>
-                                    <div class="list">活动专题</div>
-                                </div>
-                                <div class="more">
-                                    <a href="news_picture.html">查看更多</a>
-                                </div>
-                            </div>
-                            <div class="news_cont">
-                                <div class="list">
-                                    <div class="hot">
-                                        <a href="news_details_index.html">
-                                            <h2 class="title">人民日报三问区块链：技术还不成熟 要警惕概念炒作</h2>
-                                            <div class="brief">
-                                                近段时间，有关比特币的新闻非常吸睛，区块链也跟着火了一把。资本市场上，各种区块链概念股的股价涨跌犹如过山车般惊心动魄。
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hot_list">
-                                        <ul>
-                                            <li class="clr">
-                                                <a href="news_details_index_1.html">
-                                                    <div class="title">● 动静有法 联迪商用顺趋势推出QM系列扫码支付终端</div>
-                                                    <div class="time">2018-02-08</div>
-                                                </a>
-                                            </li>
-                                            <li class="clr">
-                                                <a href="news_details.html">
-                                                    <div class="title">● 比特币交易平台出海难逃监管：发现一家就关闭一家</div>
-                                                    <div class="time">2018-02-12</div>
-                                                </a>
-                                            </li>
-                                            <li class="clr">
-                                                <a href="news_details.html">
-                                                    <div class="title">● 第三方网站代销禁而不止 资管产品监管趋严转卖信托</div>
-                                                    <div class="time">2018-02-14</div>
-                                                </a>
-                                            </li>
-                                            <li class="clr">
-                                                <a href="news_details.html">
-                                                    <div class="title">● 互金监管升级：第三方支付及网贷 可能最先纳入MPA</div>
-                                                    <div class="time">2018-02-20</div>
-                                                </a>
-                                            </li>
-                                            <li class="clr">
-                                                <a href="news_details.html">
-                                                    <div class="title">● 银行砸钱竞争移动支付人民日报：不如减免年费短信费</div>
-                                                    <div class="time">2018-02-24</div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% include './indexComponent/newsSlide.swig' %}
                     </div>
                 </div>
             </div>
@@ -106,128 +36,40 @@
                             <div class="list c_index">电商产业园区</div>
                             <div class="list c_index">电商示范企业</div>
                         </div>
-                        <a href="industrial_park.html" class="more c_index">查看更多 &gt;</a>
+                        <a href="/category/19" class="more c_index">查看更多 &gt;</a>
                     </div>
                     <div class="product_list">
 
                         <div class="list">
                             <ul class="clr">
-                                <li>
-                                    <a href="industrial_park_details.html">
-                                        <div class="img">
-                                            <img src="images/img_03.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥高科电子产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="industrial_park_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_03.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">动漫基地</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="industrial_park_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_05.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">新鼎民创新创业基地</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="industrial_park_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_07.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥蜀山国际电子商务产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="industrial_park_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_09.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥青年电子商务产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
+                                {% for key, val in yuanqu %}
+                                    <li>
+                                        <a href="industrial_park_details.html">
+                                            <div class="img">
+                                                <img src="{{ val.thumb }}" width="100%" height="100%">
+                                            </div>
+                                            <div class="text">
+                                                <h2 class="title">{{ val.title }}</h2>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="list">
                             <ul class="clr">
-                                <li>
-                                    <a href="recommend_list_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_05.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">新鼎民创新创业基地</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="recommend_list_details.html">
-                                        <div class="img">
-                                            <img src="images/img_03.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥高科电子产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="recommend_list_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_07.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥蜀山国际电子商务产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="recommend_list_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_09.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">合肥青年电子商务产业园</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="recommend_list_details.html">
-                                        <div class="img">
-                                            <img src="/homeStatic/images/images/sy_03.jpg" width="100%" height="100%">
-                                        </div>
-                                        <div class="text">
-                                            <h2 class="title">动漫基地</h2>
-
-                                        </div>
-                                    </a>
-                                </li>
-
+                                {% for key, val in qiye %}
+                                    <li>
+                                        <a href="industrial_park_details.html">
+                                            <div class="img">
+                                                <img src="{{ val.thumb }}" width="100%" height="100%">
+                                            </div>
+                                            <div class="text">
+                                                <h2 class="title">{{ val.title }}</h2>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
 

@@ -9,7 +9,7 @@
     <title>{% block title %}安徽省电子商务公共服务平台{% endblock %}</title>
     <meta name="keywords" content="安徽省电子商务公共服务平台">
     <meta name="description" content="安徽省电子商务公共服务平台">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    {#<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>#}
     {% block css %}
         <link href="/homeStatic/css/video-js.min.css" rel="stylesheet"/>
         <link href="/homeStatic/css/style.css" rel="stylesheet"/>
@@ -26,7 +26,7 @@
 
     <header class="header">
         <div class="w1200 clr">
-            <a href="index.html" class="logo clr">
+            <a href="/" class="logo clr">
                 <img src="/homeStatic/images/logo.png" width="auto" height="100%" alt="logo" class="fl">
                 <div class="text">
                     <h2>安徽省电子商务公共服务平台</h2>
@@ -45,9 +45,9 @@
                 <div class="nav_list">
                     <p class="nav_a">示范创建</p>
                     <div class="nav_list_con">
-                        <a href="service_centre.html">电商公共服务中心</a>
-                        <a href="industrial_park.html">电商产业园区</a>
-                        <a href="training_base.html">电商示范企业</a>
+                        <a href="/category/19">电商公共服务中心</a>
+                        <a href="/category/17">电商产业园区</a>
+                        <a href="/category/18">电商示范企业</a>
                     </div>
                 </div>
                 <div class="nav_list">
@@ -339,8 +339,9 @@
         TouchSlide({ slideCell:x,mainCell:".index_news_left_ul",effect:"left",autoPlay:true,titCell:".hd",autoPage:"<li></li>",interTime:5000});
     };
 </script>
+{% block bottomScript %}
+{% endblock %}
 </body>
-
 </html>
 
 
