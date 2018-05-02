@@ -7,6 +7,10 @@ const adminRoleModel = _loadModel('userPermission', 'adminRole');
 const roleModel = _loadModel('userPermission', 'role');
 router.post('/login', async (ctx) => {
     try {
+        if(ctx.session.captcha.toLowerCase() !=  ctx.request.body.captcha.toLowerCase()){
+            ctx.body = _errorResponse('验证码错误')
+            return false
+        }
         var adminResult = await adminModel.findOne({
             where: {
                 username: ctx.request.body.username,
