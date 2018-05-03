@@ -15,4 +15,7 @@ require('./contentModel/yuanqu');
 require('./contentModel/qiye');
 require('./contentModel/expert');
 
+//
+require('./websiteUser/user');
+
 module.exports = sequelize;
