@@ -17,5 +17,7 @@ require('./contentModel/expert');
 
 //
 require('./websiteUser/user');
+require('./websiteUser/person');
+require('./websiteUser/company');
 
 module.exports = sequelize;

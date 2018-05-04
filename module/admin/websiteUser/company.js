@@ -4,7 +4,7 @@
 const router = require('../../router');
 const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
 const updateCompanyByUserId = _loadQuery('user', 'updateCompanyByUserId')
-const addCompany = _loadQuery('user', 'addCompany.js')
+const addCompany = _loadQuery('user', 'addCompany')
 
 router.get('/admin/companyById/:userId', async (ctx) => {
     try {
