@@ -19,5 +19,10 @@ require('./contentModel/expert');
 require('./websiteUser/user');
 require('./websiteUser/person');
 require('./websiteUser/company');
+require('./websiteUser/job');
+require('./websiteUser/resume');
+require('./websiteUser/jiaoyu');
+require('./websiteUser/gongzuo');
+require('./websiteUser/peixun');
 
 module.exports = sequelize;
