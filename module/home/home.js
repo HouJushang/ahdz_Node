@@ -42,6 +42,5 @@ router.get('/', async (ctx) => {
         category4Top: pageData.category4.shift(),
         category7Top: pageData.category7.shift()
     })
-    console.log(pageData);
-    ctx.body = ctx.body = await ctx.render('home/index', pageData)
+   ctx.body = await ctx.render('home/index', pageData)
 })

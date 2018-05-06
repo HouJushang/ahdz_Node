@@ -44,7 +44,7 @@
                             <ul class="clr">
                                 {% for key, val in yuanqu %}
                                     <li>
-                                        <a href="industrial_park_details.html">
+                                        <a href="/content/17/{{ val.id }}">
                                             <div class="img">
                                                 <img src="{{ val.thumb }}" width="100%" height="100%">
                                             </div>
@@ -60,7 +60,7 @@
                             <ul class="clr">
                                 {% for key, val in qiye %}
                                     <li>
-                                        <a href="industrial_park_details.html">
+                                        <a href="/content/18/{{ val.id }}">
                                             <div class="img">
                                                 <img src="{{ val.thumb }}" width="100%" height="100%">
                                             </div>
@@ -78,37 +78,37 @@
             </div>
             <div class="index_nav">
                 <div class="w1200 clr">
-                    <a href="service_list.html">
+                    <a href="/service/金融服务">
                         <div class="cont">
                             <em class="em_1"></em>
                             <p>金融服务</p>
                         </div>
                     </a>
-                    <a href="service_list_1.html">
+                    <a href="/service/电商代运营">
                         <div class="cont">
                             <em class="em_2"></em>
                             <p>电商代运营</p>
                         </div>
                     </a>
-                    <a href="service_list_2.html">
+                    <a href="/service/营销推广">
                         <div class="cont">
                             <em class="em_3"></em>
                             <p>营销推广</p>
                         </div>
                     </a>
-                    <a href="service_list_3.html">
+                    <a href="/service/IT互联网服务">
                         <div class="cont">
                             <em class="em_4"></em>
-                            <p>IT/互联网服务</p>
+                            <p>IT互联网服务</p>
                         </div>
                     </a>
-                    <a href="service_list_4.html">
+                    <a href="/service/物流服务">
                         <div class="cont">
                             <em class="em_5"></em>
                             <p>物流服务</p>
                         </div>
                     </a>
-                    <a href="service_list_5.html">
+                    <a href="/service/设计摄影">
                         <div class="cont">
                             <em class="em_6"></em>
                             <p>设计摄影</p>

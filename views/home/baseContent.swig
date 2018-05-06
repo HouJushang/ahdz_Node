@@ -2,9 +2,9 @@
 {% block content %}
 <div class="list_wrap">
     <div class="w1200 clr">
-        <div class="crumbs">
-            当前位置：<a href="index.html">首页</a> &gt; <a href="recommend.html">示范创建</a> &gt; 电商示范企业
-        </div>
+        {#<div class="crumbs">#}
+            {#当前位置：<a href="index.html">首页</a> &gt; <a href="recommend.html">示范创建</a> &gt; 电商示范企业#}
+        {#</div>#}
         <div class="details_brief recommend_brief clr">
             <div class="details_brief_left clr">
                 <div class="img dsqy_img fl">

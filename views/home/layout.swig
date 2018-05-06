@@ -53,12 +53,12 @@
                 <div class="nav_list">
                     <p class="nav_a">电商服务</p>
                     <div class="nav_list_con">
-                        <a href="service_list.html">金融服务</a>
-                        <a href="service_list_1.html">电商代运营</a>
-                        <a href="service_list_2.html">营销推广</a>
-                        <a href="service_list_3.html">设计摄影</a>
-                        <a href="service_list_4.html">物流服务</a>
-                        <a href="service_list_5.html">IT互联网服务</a>
+                        <a href="/service/金融服务">金融服务</a>
+                        <a href="/service/电商代运营">电商代运营</a>
+                        <a href="/service/营销推广">营销推广</a>
+                        <a href="/service/设计摄影">设计摄影</a>
+                        <a href="/service/物流服务">物流服务</a>
+                        <a href="/service/IT互联网服务">IT互联网服务</a>
                     </div>
                 </div>
                 <div class="nav_list">

@@ -2,9 +2,9 @@
 {% block content %}
     <div class="list_wrap">
         <div class="w1200 clr">
-            <div class="crumbs">
-                当前位置：<a href="/">首页</a> &gt; <a>培训课程</a> &gt; 专家智库
-            </div>
+            {#<div class="crumbs">#}
+                {#当前位置：<a href="/">首页</a> &gt; <a>培训课程</a> &gt; 专家智库#}
+            {#</div>#}
             <div class="details_brief expert_brief clr">
                 <div class="details_brief_left clr">
                     <div class="img zj_img fl">

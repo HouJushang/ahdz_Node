@@ -4,9 +4,11 @@ const Company = require('../websiteUser/company');
 const Service = sequelize.define('service', {
     id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: Sequelize.STRING, allowNull: false},
+    description: {type: Sequelize.STRING, allowNull: true},
     fanshi: {type: Sequelize.STRING, allowNull: true},
     duixiang: {type: Sequelize.STRING, allowNull: true},
     leibie: {type: Sequelize.STRING, allowNull: true},
+    jiage: {type: Sequelize.STRING, allowNull: true},
     fanwei: {type: Sequelize.STRING, allowNull: true},
     lianxi: {type: Sequelize.STRING, allowNull: true},
     image: {type: Sequelize.STRING, allowNull: true},

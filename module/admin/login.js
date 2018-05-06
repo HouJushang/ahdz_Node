@@ -18,7 +18,8 @@ router.post('/login', async (ctx) => {
             }
         });
         if (!adminResult) {
-            ctx.body = _errorResponse('用户名密码错误')
+            ctx.body = _errorResponse('用户名密码错误');
+            ctx.session.captcha = "";
             return false
         }
         var adminRoleResult = await adminRoleModel.findOne({where: {adminId: adminResult.id}, include: roleModel});
