@@ -1,4 +1,4 @@
-{% extends 'layout.swig'  %}
+{% extends 'indexLayout.swig'  %}
 {% macro imgSlide(data) %}
     <ul class="clr index_news_left_ul">
         {% for key, val in data %}
@@ -477,7 +477,7 @@
                 <div class="w1200">
                     <div class="index_end_tab clr">
                         <div class="name famous fl">名优商品</div>
-                        <a href="commodity_list.html" class="more fr">查看更多 &gt;</a>
+                        <a href="/product" class="more fr">查看更多 &gt;</a>
                     </div>
                     <div class="index_recommend_end">
                         <ul class="clr">
