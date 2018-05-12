@@ -7,7 +7,7 @@ const getServiceById = _loadQuery('user', 'getServiceById')
 const addService = _loadQuery('user', 'addService')
 const delServiceById = _loadQuery('user', 'delServiceById');
 const updateServiceById = _loadQuery('user', 'updateServiceById');
-
+const serviceModel = _loadModel('websiteUser', 'service')
 
 router.post('/admin/listService', async (ctx) => {
     try {
@@ -58,4 +58,15 @@ router.delete('/admin/service', async (ctx) => {
         ctx.body = _errorResponse(e.message)
     }
 })
-
+router.put('/admin/checkService', async (ctx) => {
+    try {
+        var result = await serviceModel.update({status:  ctx.request.body.status}, {where: {id: ctx.request.body.id}})
+        if (result) {
+            ctx.body = _successResponse('内容更新成功', result);
+        } else {
+            ctx.body = _errorResponse('内容更新失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})

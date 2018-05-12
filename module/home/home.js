@@ -3,6 +3,9 @@
  */
 const router = require('../router');
 const getContentList = _loadQuery('content', 'getContentList')
+const getPositionContent = _loadQuery('content', 'getPositionContent')
+const positionContentForHome = _loadQuery('user', 'positionContentForHome')
+const getServiceListWithPage = _loadQuery('user', 'getServiceListWithPage')
 router.get('/', async (ctx) => {
     const category1 = getContentList('news', {categoryId: 1, status: 1}, {pageSize: 6});
     const category2 = getContentList('news', {categoryId: 2, status: 1}, {pageSize: 6});
@@ -17,8 +20,30 @@ router.get('/', async (ctx) => {
     const slide14 = getContentList('slide', {categoryId: 14, status: 1});
     const slide15 = getContentList('slide', {categoryId: 15, status: 1});
 
+    const servicePosition4 = positionContentForHome(4);
+    const servicePosition5 = positionContentForHome(5);
+    const servicePosition6 = positionContentForHome(6);
+    const servicePosition7 = positionContentForHome(7);
+    const servicePosition8 = positionContentForHome(8);
+    const servicePosition9 = positionContentForHome(9);
+
     const yuanqu = getContentList('yuanqu', {categoryId: 17, status: 1}, {pageSize: 5});
     const qiye = getContentList('qiye', {categoryId: 18, status: 1}, {pageSize: 5});
+
+    const position1 = getPositionContent(1);
+
+    const category19 = getContentList('slide', {categoryId: 19, status: 1}, {pageSize: 6});
+    const category17 = getContentList('yuanqu', {categoryId: 17, status: 1}, {pageSize: 5});
+    const category18 = getContentList('qiye', {categoryId: 18, status: 1}, {pageSize: 5});
+
+    const serviceList4 = getServiceListWithPage({leibie: '金融服务'}, {pageSize: 6})
+    const serviceList5 = getServiceListWithPage({leibie: '电商代运营'}, {pageSize: 6})
+    const serviceList6 = getServiceListWithPage({leibie: '营销推广'}, {pageSize: 6})
+    const serviceList7 = getServiceListWithPage({leibie: '设计摄影'}, {pageSize: 6})
+    const serviceList8 = getServiceListWithPage({leibie: '物流服务'}, {pageSize: 6})
+    const serviceList9 = getServiceListWithPage({leibie: 'IT互联网服务'}, {pageSize: 6})
+
+
 
     var pageData = {
         slide10: await slide10,
@@ -33,14 +58,36 @@ router.get('/', async (ctx) => {
         category4: await category4,
         category7: await category7,
         yuanqu: await yuanqu,
-        qiye: await qiye
+        qiye: await qiye,
+        position1: await position1,
+        category19: await category19,
+        category18: await category18,
+        category17: await category17,
+        servicePosition4: await servicePosition4,
+        servicePosition5: await servicePosition5,
+        servicePosition6: await servicePosition6,
+        servicePosition7: await servicePosition7,
+        servicePosition8: await servicePosition8,
+        servicePosition9: await servicePosition9,
+        serviceList4: await serviceList4,
+        serviceList5: await serviceList5,
+        serviceList6: await serviceList6,
+        serviceList7: await serviceList7,
+        serviceList8: await serviceList8,
+        serviceList9: await serviceList9,
     }
     Object.assign(pageData, {
         category1Top: pageData.category1.shift(),
         category2Top: pageData.category2.shift(),
         category3Top: pageData.category3.shift(),
         category4Top: pageData.category4.shift(),
-        category7Top: pageData.category7.shift()
+        category7Top: pageData.category7.shift(),
+        servicePosition4: pageData.servicePosition4[0],
+        servicePosition5: pageData.servicePosition5[0],
+        servicePosition6: pageData.servicePosition6[0],
+        servicePosition7: pageData.servicePosition7[0],
+        servicePosition8: pageData.servicePosition8[0],
+        servicePosition9: pageData.servicePosition9[0],
     })
    ctx.body = await ctx.render('home/index', pageData)
 })

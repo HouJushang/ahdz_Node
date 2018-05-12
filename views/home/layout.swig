@@ -64,8 +64,8 @@
                 <div class="nav_list">
                     <p class="nav_a">电商优选</p>
                     <div class="nav_list_con">
-                        <a href="recommend_list.html">电商企业</a>
-                        <a href="commodity_list.html">商品展示</a>
+                        <a href="/company">电商企业</a>
+                        <a href="/product">商品展示</a>
                     </div>
                 </div>
                 <div class="nav_list">

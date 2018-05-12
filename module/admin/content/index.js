@@ -3,3 +3,5 @@
  */
 require('./category')
 require('./content')
+require('./position')
+require('./positionContent')

@@ -298,7 +298,7 @@ body:after{ content: ''; display: block; width: 100%;  height: 100px; background
 .index_news_right .service_tj{ width:100%; height: 300px; background: #eaf1fb;  }
 .index_news_right .service_tj .text_con{ padding: 20px; }
 .index_news_right .service_tj .tit{ padding-left: 35px; background: url(../images/dsfwt_1.png) left center no-repeat; font-size: 16px; color: #333333; line-height: 25px; }
-.index_news_right .service_tj .list{ position: relative; padding-left: 110px; line-height: 30px; margin-top: 12px; }
+.index_news_right .service_tj .list{ position: relative; padding-left: 110px; line-height: 30px; margin-top: 12px; height: 30px;}
 .index_news_right .service_tj .list .name{ left: 0px; top: 0px; position: absolute; width:100px; height: 30px; background: #71bafb; font-size: 14px; color: #ffffff;  text-align: center; display: block; }
 .index_news_right .service_tj .list .text{ font-size: 16px; color: #333; overflow: hidden; word-break: keep-all;white-space: nowrap; text-overflow: ellipsis; display: block; }
 .index_news_right .service_tj .service_list{ padding: 10px 0; }

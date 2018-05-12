@@ -9,6 +9,10 @@ require('./userPermission/roleMenu');
 
 //
 require('./content/category');
+require('./content/position');
+require('./content/positionContent');
+
+
 require('./contentModel/news');
 require('./contentModel/slide');
 require('./contentModel/yuanqu');
