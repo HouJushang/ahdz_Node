@@ -18,6 +18,7 @@
         <script src="/homeStatic/scripts/html5shiv.min.js"></script>
         <![endif]-->
     {% endblock %}
+    {% include './js.swig' %}
 </head>
 <body>
 
@@ -29,6 +30,8 @@
 {% include './user_login.swig' %}
 {% include './sidebar.swig' %}
 {% include './js.swig' %}
+{% block bottomScript %}
+{% endblock %}
 <script type="text/javascript">
     $(function(){
         $(".index_news_left").each(function(){

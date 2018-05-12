@@ -241,18 +241,12 @@ $(function(){
             $(".user_login .register").show().siblings().hide();
         };
     });
-        
-    $(".con_registe .btn").click(function(){
-        window.location.href = "personal_account.html";
-        return false;
-        $(".con_registe").hide();
-        $(".complete").show();
-    });
+
 
     $(".login_cont .btn").click(function(){
-        window.location.href = "enterprise_account.html";
+        // window.location.href = "enterprise_account.html";
         return false;
-        $(".login_cont").hide().siblings(".login_back").show();
+        // $(".login_cont").hide().siblings(".login_back").show();
     });
 
     $(".login_back .con_1 .btn").click(function(){
@@ -264,24 +258,7 @@ $(function(){
     });
 
     $(".login_cont .btn").click(function(){
-        $(".login_cont").hide().siblings(".login_back").show();
-    });
-
-    $(".obtain").click(function(){           
-        $(".obtain").hide();
-        $(".already").show();
-        var time = 60;
-        var t = setInterval(function () {
-          if (time <= 1) {
-            $(".obtain").show();
-            $(".already").hide();
-            time = 60;
-            clearInterval(t);
-          } else {
-            time = time - 1;
-          }
-          $(".already").find("em").text(time);
-        }, 1000);
+        // $(".login_cont").hide().siblings(".login_back").show();
     });
 
 

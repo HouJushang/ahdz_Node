@@ -4,22 +4,21 @@
             <div class="tit">用户登录</div>
             <div class="con">
                 <div class="list list_1">
-                    <input type="text" placeholder="输入用户名或手机号">
+                    <input type="text" class="loginPhone" placeholder="手机号">
                 </div>
                 <div class="list list_2">
-                    <input type="text" placeholder="请输入密码">
+                    <input type="password" class="loginPassword" placeholder="请输入密码">
                 </div>
                 <div class="list yzm list_3">
-                    <input type="text" placeholder="请输入图片验证码">
-                    <div class="operation">
-                        <img src="/homeStatic/images/login_11.png" width="100%" height="100%">
+                    <input type="text" class="loginCode" placeholder="请输入图片验证码">
+                    <div class="operation" id="captcha1">
                     </div>
                 </div>
                 <div class="remember clr">
                     <div class="pass on fl">记住密码</div>
                     <a href="#" class="fr">忘记密码</a>
                 </div>
-                <div class="btn">登录</div>
+                <div class="btn loginBtn">登录</div>
                 <div class="new">新用户账号<a>注册</a></div>
             </div>
         </div>
@@ -62,59 +61,57 @@
         </div>
         <div class="con">
             <div class="cons_list">
-                <div class="con_registe">
+                <div class="con_registe componyReg">
                     <div class="list list_1">
-                        <input type="text" placeholder="请输入公司名称">
+                        <input type="text" name="company_name" class="company_name" placeholder="请输入公司名称">
                     </div>
                     <div class="list list_4">
-                        <input type="text" placeholder="请输入手机号">
+                        <input type="text" name="company_phone" class="company_phone" placeholder="请输入手机号">
                     </div>
                     <div class="list yzm list_5">
-                        <input type="text" placeholder="请输入图片验证码">
-                        <div class="operation">
-                            <img src="/homeStatic/images/login_11.png" width="100%" height="100%">
+                        <input type="text" name="code3" class="code3" placeholder="请输入图片验证码">
+                        <div class="operation" id="captcha3">
                         </div>
                     </div>
                     <div class="list yzm list_6">
-                        <input type="text" placeholder="请输入短信验证码">
+                        <input type="text" class="company_smscode" placeholder="请输入短信验证码">
                         <div class="operation">
-                            <div class="obtain">获取验证码</div>
+                            <div class="obtain obtain3">获取验证码</div>
                             <div class="already hide">已发送(<em>60</em>)s</div>
                         </div>
                     </div>
                     <div class="list list_7">
-                        <input type="text" placeholder="请输入密码">
+                        <input type="password" class="company_password" placeholder="请输入密码">
                     </div>
                     <!-- <div class="list list_8">
                         <input type="text" placeholder="请再次输入密码">
                     </div> -->
-                    <div class="btn">注册</div>
+                    <div class="btn registerCom">注册</div>
                     <div class="new">已有账号，立即<a>登录</a></div>
                 </div>
-                <div class="con_registe">
+                <div class="con_registe personReg">
                     <div class="list list_4">
-                        <input type="text" placeholder="请输入手机号">
+                        <input type="text" class="person_phone" placeholder="请输入手机号">
                     </div>
                     <div class="list yzm list_5">
-                        <input type="text" placeholder="请输入图片验证码">
-                        <div class="operation">
-                            <img src="/homeStatic/images/login_11.png" width="100%" height="100%">
+                        <input type="text" class="person_code" placeholder="请输入图片验证码">
+                        <div class="operation" id="captcha2">
                         </div>
                     </div>
                     <div class="list yzm list_6">
                         <input type="text" placeholder="请输入短信验证码">
                         <div class="operation">
-                            <div class="obtain">获取验证码</div>
+                            <div class="obtain person_obtain">获取验证码</div>
                             <div class="already hide">已发送(<em>60</em>)s</div>
                         </div>
                     </div>
                     <div class="list list_7">
-                        <input type="text" placeholder="请输入密码">
+                        <input type="password" class="person_password" placeholder="请输入密码" />
                     </div>
                     <!-- <div class="list list_8">
                         <input type="text" placeholder="请再次输入密码">
                     </div> -->
-                    <div class="btn">注册</div>
+                    <div class="btn registerPer">注册</div>
                     <div class="new">已有账号，立即<a>登录</a></div>
                 </div>
             </div>
@@ -127,3 +124,211 @@
         <div class="del"></div>
     </div>
 </section>
+<script>
+    var phoneReg = /^1[0-9]{10}$/;
+    $(".obtain3").click(function(){
+        var phone = $('.company_phone').val();
+        var code = $(".code3").val();
+        console.log(phone);
+        if(!phoneReg.test(phone)){
+            alert("手机号格式不正确");
+            return;
+        }
+        if(code.length != 4){
+            alert("验证码格式不正确")
+            return;
+        }
+        $.ajax({
+            url: "http://localhost:3000/smscode",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: phone,
+                code: code
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    showTime();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+    $(".person_obtain").click(function(){
+        var phone = $('.person_phone').val();
+        var code = $(".person_code").val();
+        if(!phoneReg.test(phone)){
+            alert("手机号格式不正确");
+            return;
+        }
+        if(code.length != 4){
+            alert("验证码格式不正确")
+            return;
+        }
+        $.ajax({
+            url: "http://localhost:3000/smscode",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: phone,
+                code: code
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    showTime();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+    function showTime(){
+        $(".obtain").hide();
+        $(".already").show();
+        var time = 60;
+        var t = setInterval(function () {
+            if (time <= 1) {
+                $(".obtain").show();
+                $(".already").hide();
+                time = 60;
+                clearInterval(t);
+            } else {
+                time = time - 1;
+            }
+            $(".already").find("em").text(time);
+        }, 1000);
+    }
+
+    $('.registerCom').click(function() {
+        if(!$('.company_name').val()){
+            alert('请填写公司名称')
+            return false
+        }
+        if(!phoneReg.test($('.company_phone').val())){
+            alert('手机号码格式不正确')
+            return false
+        }
+        if($('.company_smscode').val().length != 4){
+            alert('验证码格式不正确')
+            return false
+        }
+        if($('.company_password').val().length < 6){
+            alert('密码的长度必须大于等于6位')
+            return false
+        }
+        $.ajax({
+            url: "http://localhost:3000/register/company",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: $('.company_phone').val(),
+                company_name: $('.company_name').val(),
+                smsCode:$('.company_smscode').val(),
+                password: $('.company_password').val()
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    $(".con_registe").hide();
+                    $(".complete").show();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+
+    $('.registerPer').click(function() {
+        if(!phoneReg.test($('.person_phone').val())){
+            alert('手机号码格式不正确')
+            return false
+        }
+        if($('.person_code').val().length != 4){
+            alert('验证码格式不正确')
+            return false
+        }
+        if($('.person_password').val().length < 6){
+            alert('密码的长度必须大于等于6位')
+            return false
+        }
+        $.ajax({
+            url: "http://localhost:3000/register/person",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: $('.person_phone').val(),
+                smsCode:$('.person_code').val(),
+                password: $('.person_password').val()
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    $(".con_registe").hide();
+                    $(".complete").show();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+
+    $('.loginBtn').click(function(){
+        if(!phoneReg.test($('.loginPhone').val())){
+            alert('手机号码格式不正确')
+            return false
+        }
+        if($('.loginCode').val().length != 4){
+            alert('验证码格式不正确')
+            return false
+        }
+        if($('.loginPassword').val().length < 6){
+            alert('密码的长度必须大于等于6位')
+            return false
+        }
+        $.ajax({
+            url: "http://localhost:3000/register/login",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: $('.loginPhone').val(),
+                code:$('.loginCode').val(),
+                password: $('.loginPassword').val()
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    //
+                    alert('登录成功')
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    })
+
+
+    function getSvg(idTag){
+        $.ajax({
+            url: "http://localhost:3000/captcha",
+            type: "GET",
+            dataType: "json",
+            success: function (e) {
+                $(idTag).html('<?xml version="1.0"?>' + e.data.captcha)
+                    .attr({
+                        'height': '100%',
+                        'width': '100%'
+                    });
+            }
+        })
+    }
+    $('#captcha1').click(function() {
+        getSvg("#captcha1");
+    })
+    $('#captcha2').click(function() {
+        getSvg("#captcha2");
+    })
+    $('#captcha3').click(function() {
+        getSvg("#captcha3");
+    })
+
+    getSvg("#captcha1, #captcha2, #captcha3");
+
+</script>

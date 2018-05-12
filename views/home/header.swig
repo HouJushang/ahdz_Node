@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="nav_list">
-                <p class="nav_a">课程培训</p>w
+                <p class="nav_a">课程培训</p>
                 <div class="nav_list_con">
                     <a href="/category/20">精品课程</a>
                     <a href="/category/21">专家智库</a>

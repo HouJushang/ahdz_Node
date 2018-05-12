@@ -18,6 +18,7 @@
         <script src="/homeStatic/scripts/html5shiv.min.js"></script>
         <![endif]-->
     {% endblock %}
+    {% include './js.swig' %}
 </head>
 <body>
 
@@ -28,7 +29,6 @@
 </section>
 {% include './user_login.swig' %}
 {% include './sidebar.swig' %}
-{% include './js.swig' %}
 <script type="text/javascript">
     $(function(){
 
