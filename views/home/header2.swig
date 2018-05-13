@@ -68,7 +68,7 @@
         <div class="search clr">
             {#<a href="javascript:void(0)" class="url"></a>#}
             {% if homeLogin %}
-                <a href="/account/info">{{ homeLogin.phone }}</a>
+                <a href="/account/info">{{ homeLogin.phone }}</a> <a href="/register/loginOut" style="margin-left: 10px;"> 退出</a>
             {% else %}
                 <a href="javascript:void(0)" class="login">登录</a><em>|</em><a href="javascript:void(0)" class="register">注册</a>
             {% endif %}

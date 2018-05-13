@@ -1,8 +1,12 @@
 const router = require('../router');
 const getPersonByUserId = _loadQuery('user', 'getPersonByUserId')
 const updatePersonByUserId = _loadQuery('user', 'updatePersonByUserId')
+const updateCompanyByUserId = _loadQuery('user', 'updateCompanyByUserId')
 const addPerson = _loadQuery('user', 'addPerson')
 const updateUserById = _loadQuery('user', 'updateUserById')
+const addResume = _loadQuery('user', 'addResume')
+const getResumeListWithPage = _loadQuery('user', 'getResumeListWithPage')
+const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
 
 router.all('/account', async (ctx, next) => {
     if(ctx.session.homeLogin == null){
@@ -15,7 +19,11 @@ router.all('/account', async (ctx, next) => {
 router.get('/account/info', async (ctx) => {
     console.log(ctx.session.homeLogin)
     if(ctx.session.homeLogin.type == 1){
-        ctx.body = await ctx.render('home/account/companyInfo', {account: 111})
+        const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+        ctx.body = await ctx.render('home/account/companyInfo', {
+            homeLogin: ctx.session.homeLogin,
+            psersonInfo,
+        })
     }else if (ctx.session.homeLogin.type == 0){
         const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
         ctx.body = await ctx.render('home/account/personInfo', {
@@ -30,6 +38,13 @@ router.get('/account/info', async (ctx) => {
 router.get('/account/modify', async (ctx) => {
     const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
     ctx.body = await ctx.render('home/account/personModify.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+    })
+})
+router.get('/account/modifyC', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    ctx.body = await ctx.render('home/account/companyModify.swig', {
         homeLogin: ctx.session.homeLogin,
         psersonInfo,
     })
@@ -51,9 +66,11 @@ router.get('/account/resume', async (ctx) => {
 })
 router.get('/account/resumeM', async (ctx) => {
     const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
-    ctx.body = await ctx.render('home/account/personalResume.swig', {
+    const result = await getResumeListWithPage({personId: psersonInfo.id}, ctx.request.body.pageInfo);
+    ctx.body = await ctx.render('home/account/personalResumeM.swig', {
         homeLogin: ctx.session.homeLogin,
         psersonInfo,
+        list: result
     })
 })
 router.post('/account/save/:userId', async (ctx) => {
@@ -65,6 +82,37 @@ router.post('/account/save/:userId', async (ctx) => {
                 ctx.body = _successResponse('个人信息操作成功', result);
             } else {
                 ctx.body = _errorResponse('个人信息操作失败', result);
+            }
+        } else {
+            ctx.request.body.userId = ctx.params.userId;
+            const result = addPerson(ctx.request.body);
+            if (result) {
+                ctx.body = _successResponse('个人信息操作成功', result);
+            } else {
+                ctx.body = _errorResponse('个人信息操作失败', result);
+            }
+        }
+
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+router.get('/account/mation', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    ctx.body = await ctx.render('home/account/companyMation.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+    })
+})
+router.post('/account/saveCompany/:userId', async (ctx) => {
+    try {
+        const comResult = await getCompanyByUserId(ctx.params.userId);
+        if (comResult) {
+            const result = updateCompanyByUserId(ctx.params.userId, ctx.request.body)
+            if (result) {
+                ctx.body = _successResponse('信息操作成功', result);
+            } else {
+                ctx.body = _errorResponse('信息操作失败', result);
             }
         } else {
             ctx.request.body.userId = ctx.params.userId;
@@ -100,6 +148,17 @@ router.post('/account/savePassWord', async (ctx) => {
             ctx.body = _errorResponse('用户更新失败');
         }
 
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+
+router.post('/account/addResume', async (ctx) => {
+    try {
+        ctx.request.body.status = 0;
+        const result = await addResume(ctx.request.body);
+        ctx.body = _successResponse('内容添加成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }

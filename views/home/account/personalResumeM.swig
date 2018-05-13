@@ -23,10 +23,10 @@
                                 <div class="tit">我的简历</div>
                                 <dl>
                                     <dd>
-                                        <a href="personal_resume.html">创建简历</a>
+                                        <a href="/account/resume">创建简历</a>
                                     </dd>
                                     <dd class="on">
-                                        <a href="personal_administration.html">简历管理</a>
+                                        <a href="/account/resumeM">简历管理</a>
                                     </dd>
                                 </dl>
                             </div>
@@ -36,24 +36,24 @@
                         <div class="list_cont">
                             <div class="list_title"><i>简历管理</i></div>
                             <div class="list_personal">
-                                <div class="clr condition">
-                                    <div class="fl state clr">
-                                        <div class="name fl">状态：</div>
-                                        <div class="text">
-                                            <select>
-                                                <option>全部</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="fr time clr">
-                                        <div class="name fl">创建日期：</div>
-                                        <div class="text clr">
-                                            <input type="text" id="start_time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\')}'})" class="fl">
-                                            <em class="fl">~</em>
-                                            <input type="text" id="end_time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})" class="fl">
-                                        </div>
-                                    </div>
-                                </div>
+                                {#<div class="clr condition">#}
+                                    {#<div class="fl state clr">#}
+                                        {#<div class="name fl">状态：</div>#}
+                                        {#<div class="text">#}
+                                            {#<select>#}
+                                                {#<option>全部</option>#}
+                                            {#</select>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#<div class="fr time clr">#}
+                                        {#<div class="name fl">创建日期：</div>#}
+                                        {#<div class="text clr">#}
+                                            {#<input type="text" id="start_time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\')}'})" class="fl">#}
+                                            {#<em class="fl">~</em>#}
+                                            {#<input type="text" id="end_time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_time\')}'})" class="fl">#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
                                 <div class="table">
                                     <table>
                                         <tr>
@@ -63,51 +63,19 @@
                                             <th width="5%">状态</th>
                                             <th width="30%">操作</th>
                                         </tr>
+                                        {% for key, val in list.rows %}
                                         <tr>
-                                            <td>1</td>
-                                            <td>我的简历1</td>
-                                            <td>2017-08-20 10:00 </td>
-                                            <td>启用</td>
+                                            <td>{{ key + 1 }}</td>
+                                            <td>{{ val.name }}</td>
+                                            <td>{{ val['createdAt'] | date('Y-m-d') }}</td>
+                                            <td>{{ ['停用', '展示'][val.isShow] }}</td>
                                             <td>
                                                 <a class="btn-toolbar" href="#">编辑</a>
                                                 <a class="btn-toolbar" href="#">禁用</a>
                                                 <a class="btn-toolbar red" href="#">删除</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>我的简历2</td>
-                                            <td>2017-08-20 10:00 </td>
-                                            <td>启用</td>
-                                            <td>
-                                                <a class="btn-toolbar" href="#">编辑</a>
-                                                <a class="btn-toolbar" href="#">禁用</a>
-                                                <a class="btn-toolbar red" href="#">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>我的简历3</td>
-                                            <td>2017-08-20 10:00 </td>
-                                            <td>启用</td>
-                                            <td>
-                                                <a class="btn-toolbar" href="#">编辑</a>
-                                                <a class="btn-toolbar" href="#">禁用</a>
-                                                <a class="btn-toolbar red" href="#">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>我的简历4</td>
-                                            <td>2017-08-20 10:00 </td>
-                                            <td>启用</td>
-                                            <td>
-                                                <a class="btn-toolbar" href="#">编辑</a>
-                                                <a class="btn-toolbar" href="#">禁用</a>
-                                                <a class="btn-toolbar red" href="#">删除</a>
-                                            </td>
-                                        </tr>
-
+                                        {% endfor %}
                                     </table>
 
                                 </div>

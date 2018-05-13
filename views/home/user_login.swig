@@ -229,8 +229,7 @@
             },
             success: function (e) {
                 if(e.code == "success"){
-                    $(".con_registe").hide();
-                    $(".complete").show();
+                    window.location.href = "/account/info"
                 }else{
                     alert(e.message);
                 }
@@ -262,8 +261,7 @@
             },
             success: function (e) {
                 if(e.code == "success"){
-                    $(".con_registe").hide();
-                    $(".complete").show();
+                    window.location.href = "/account/info"
                 }else{
                     alert(e.message);
                 }

@@ -5,7 +5,8 @@ const addCompany = _loadQuery('user', 'addCompany')
 const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
 const userModel = _loadModel('websiteUser', 'user')
 const addPerson = _loadQuery('user', 'addPerson')
-
+const personModel = _loadModel('websiteUser', 'person')
+const companyModel = _loadModel('websiteUser', 'company')
 router.post('/register/company', async (ctx) => {
     var result = await countUserByWhere({phone: ctx.request.body.phone});
     if(result > 0){
@@ -17,31 +18,17 @@ router.post('/register/company', async (ctx) => {
         password: ctx.request.body.password,
         type: 1,
     });
-
-    const comResult = await getCompanyByUserId(result.id);
-    if (comResult) {
-        const result = updateCompanyByUserId(result.id, {
-            companyName: ctx.request.body.company_name
-        })
-        if (result) {
-            ctx.body = _successResponse('企业信息操作成功', result);
-        } else {
-            ctx.body = _errorResponse('企业信息操作失败', result);
-        }
-        return false;
+    ctx.session.homeLogin = result
+    var addResult = await addCompany({
+        companyName: ctx.request.body.company_name,
+        userId: result.id
+    });
+    if (result) {
+        ctx.body = _successResponse('企业信息操作成功', addResult);
     } else {
-        ctx.request.body.userId = ctx.params.userId;
-        const result = addCompany({
-            companyName: ctx.request.body.company_name
-        });
-        if (result) {
-            ctx.body = _successResponse('企业信息操作成功', result);
-        } else {
-            ctx.body = _errorResponse('企业信息操作失败', result);
-        }
-        return false;
+        ctx.body = _errorResponse('企业信息操作失败', addResult);
     }
-    ctx.body = _successResponse('添加成功', result);
+    ctx.body = _successResponse('添加成功', addResult);
 })
 
 router.post('/register/person', async (ctx) => {
@@ -55,6 +42,7 @@ router.post('/register/person', async (ctx) => {
         password: ctx.request.body.password,
         type: 0,
     });
+    ctx.session.homeLogin = result
     await addPerson({userId: result.id});
     ctx.body = _successResponse('添加成功', result);
 })
@@ -71,4 +59,8 @@ router.post('/register/login', async (ctx) => {
         ctx.body = _errorResponse('用户名或者密码错误', result);
     }
 
+})
+router.get('/register/loginOut', async (ctx) => {
+    ctx.session.homeLogin = null
+    ctx.redirect('/')
 })

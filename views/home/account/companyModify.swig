@@ -8,10 +8,10 @@
                     <div class="list on">
                         <div class="tit">基本资料</div>
                         <dl>
-                            <dd class="on">
+                            <dd>
                                 <a href="/account/info">账号信息</a>
                             </dd>
-                            <dd>
+                            <dd class="on">
                                 <a href="/account/modifyC">修改密码</a>
                             </dd>
                             <dd>
@@ -65,64 +65,82 @@
             </div>
             <div class="list_text">
                 <div class="list_cont">
-                    <div class="list_title"><i>账号信息</i></div>
+                    <div class="list_title"><i>修改密码</i></div>
                     <div class="list_personal">
                         <div class="from_list w5 clr">
-                            <div class="tit wd8 fl">手机号：</div>
-                            <div class="con">{{ psersonInfo.user.phone }}</div>
-                        </div>
-                        <div class="from_list w5 clr">
-                            <div class="tit wd8 fl">LOGO：</div>
-                            <div class="con clr">
-                                <img class="img_tx fl" id="logoBox" src="{% if psersonInfo.logo %}{{ psersonInfo.logo }}{% else %}/homeStatic/images/zjzk_03.jpg{% endif %}" id="avatarBox" width="100%" height="100%">
-                                <div class="operation">
-                                    <div class="btn" id="logo_web">上传图片</div>
-                                    <p class="red">*建议上传正方形的图片</p>
-                                </div>
+                            <div class="tit wd10 fl">旧密码：</div>
+                            <div class="con">
+                                <input type="password" class="oldPass" placeholder="请输入旧密码">
                             </div>
                         </div>
+                        <div class="from_list w5 clr">
+                            <div class="tit wd10 fl">新密码：</div>
+                            <div class="con">
+                                <input type="password" class="password" placeholder="请输入新密码">
+                            </div>
+                        </div>
+                        <div class="from_list w5 clr">
+                            <div class="tit wd10 fl">确认新密码：</div>
+                            <div class="con">
+                                <input type="password" class="password2" placeholder="请输入确认密码">
+                            </div>
+                        </div>
+
                         <div class="button">
-                            <div class="btn saveBtn">保存</div>
+                            <div class="btn savePass">确定</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 {% endblock %}
 {% block bottomScript %}
-    <script src="/homeStatic/scripts/webuploader.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $(".nav_list .list .tit").click(function(){
-                $(this).siblings("dl").slideDown().parents(".list").siblings(".list").find("dl").slideUp();
-            });
-
-            var logo = '';
-            uploader("#logo_web","gif,jpg,jpeg,bmp,png","image/*",2,function(e){
-                logo = e.data.url;
-                $('#logoBox').attr('src', '/' + logo);
-            });
-            $('.saveBtn').click(function() {
-                $.ajax({
-                    url: "/account/saveCompany/" + "{{ homeLogin.id }}",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        logo: $('#logoBox').attr('src'),
-                    },
-                    success: function (e) {
-                        if(e.code == "success"){
-                            window.location.href = "/account/info"
-                        }else{
-                            alert(e.message);
-                        }
-                    }
-                })
-            })
+<script type="text/javascript">
+    $(function(){
+        $(".nav_list .list .tit").click(function(){
+            $(this).siblings("dl").slideDown().parents(".list").siblings(".list").find("dl").slideUp();
         });
-    </script>
+    });
+
+    $('.savePass').click(function() {
+        var oldPass = $('.oldPass').val();
+        var password = $('.password').val();
+        var password2 = $('.password2').val();
+        if(!oldPass){
+            alert('填写旧密码')
+            return false
+        }
+        if(!(password && password2 && password2 == password)){
+            alert('填写密码并且保持两次一直')
+            return false
+        }
+
+        $.ajax({
+            url: "/account/savePassWord",
+            type: "POST",
+            dataType: "json",
+            data: {
+                oldPass: oldPass,
+                password: password,
+            },
+            success: function (e) {
+                console.log(e)
+                if(e.code == "success"){
+                    alert('修改成功')
+                    window.history.go(0);
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+
+</script>
 {% endblock %}
+
 
 
 
