@@ -7,6 +7,15 @@ const updateUserById = _loadQuery('user', 'updateUserById')
 const addResume = _loadQuery('user', 'addResume')
 const getResumeListWithPage = _loadQuery('user', 'getResumeListWithPage')
 const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
+const getProductListWithPage = _loadQuery('user', 'getProductListWithPage')
+const Sequelize = require('Sequelize')
+const Op = Sequelize.Op
+const productModel = _loadModel('websiteUser', 'product')
+const jobModel = _loadModel('websiteUser', 'job')
+const serviceModel = _loadModel('websiteUser', 'service')
+const addProduct = _loadQuery('user', 'addProduct')
+const addJob = _loadQuery('user', 'addJob')
+const addService = _loadQuery('user', 'addService')
 
 router.all('/account', async (ctx, next) => {
     if(ctx.session.homeLogin == null){
@@ -162,5 +171,156 @@ router.post('/account/addResume', async (ctx) => {
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
+})
+
+router.get('/account/addProduct', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    ctx.body = await ctx.render('home/account/addProduct.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+    })
+})
+router.post('/account/addProduct', async (ctx) => {
+    try {
+        const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+        ctx.request.body.status = 0;
+        ctx.request.body.companyId = comInfo.id;
+        const result = addProduct(ctx.request.body);
+        ctx.body = _successResponse('内容添加成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.get('/account/productShenhe', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await productModel.findAll({
+        where: {
+            status: {
+                [Op.ne]: 1,
+            },
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/productShenhe.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
+})
+
+router.get('/account/productZhanshi', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await productModel.findAll({
+        where: {
+            status: 1,
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/productZhanshi.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
+})
+router.get('/account/addJob', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    ctx.body = await ctx.render('home/account/addJob.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+    })
+})
+router.post('/account/addJob', async (ctx) => {
+    try {
+        const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+        ctx.request.body.status = 0;
+        ctx.request.body.companyId = comInfo.id;
+        const result = addJob(ctx.request.body);
+        ctx.body = _successResponse('内容添加成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.get('/account/jobShenhe', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await jobModel.findAll({
+        where: {
+            status: {
+                [Op.ne]: 1,
+            },
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/jobShenhe.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
+})
+
+router.get('/account/jobZhanshi', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await jobModel.findAll({
+        where: {
+            status: 1,
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/jobZhanshi.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
+})
+router.get('/account/addService', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    ctx.body = await ctx.render('home/account/addService.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+    })
+})
+router.post('/account/addService', async (ctx) => {
+    try {
+        const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+        ctx.request.body.status = 0;
+        ctx.request.body.companyId = comInfo.id;
+        const result = addService(ctx.request.body);
+        ctx.body = _successResponse('内容添加成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.get('/account/serviceShenhe', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await serviceModel.findAll({
+        where: {
+            status: {
+                [Op.ne]: 1,
+            },
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/serviceShenhe.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
+})
+
+router.get('/account/serviceZhanshi', async (ctx) => {
+    const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+    const list = await serviceModel.findAll({
+        where: {
+            status: 1,
+            companyId: psersonInfo.id
+        }
+    })
+    ctx.body = await ctx.render('home/account/serviceZhanshi.swig', {
+        homeLogin: ctx.session.homeLogin,
+        psersonInfo,
+        list
+    })
 })
 

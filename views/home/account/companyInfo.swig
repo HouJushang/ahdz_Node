@@ -23,13 +23,13 @@
                         <div class="tit">商品展示</div>
                         <dl>
                             <dd>
-                                <a href="enterprise_commodity_release.html">发布商品信息</a>
+                                <a href="/account/addProduct">发布商品信息</a>
                             </dd>
                             <dd>
-                                <a href="enterprise_commodity_examine.html">审核中的商品</a>
+                                <a href="/account/productShenhe">审核中的商品</a>
                             </dd>
                             <dd>
-                                <a href="enterprise_commodity_exhibition.html">展示中的商品</a>
+                                <a href="/account/productZhanshi">展示中的商品</a>
                             </dd>
                         </dl>
                     </div>
