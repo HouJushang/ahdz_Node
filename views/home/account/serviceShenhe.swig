@@ -5,64 +5,8 @@
         <div class="w1200 clr">
             <div class="fl personnel_nav">
                 {% include './avatarC.swig' %}
-                <div class="nav_list">
-                    <div class="list">
-                        <div class="tit">基本资料</div>
-                        <dl>
-                            <dd>
-                                <a href="/account/info">账号信息</a>
-                            </dd>
-                            <dd>
-                                <a href="/account/modifyC">修改密码</a>
-                            </dd>
-                            <dd>
-                                <a href="/account/mation">企业信息</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list">
-                        <div class="tit">商品展示</div>
-                        <dl>
-                            <dd>
-                                <a href="/account/addProduct">发布商品信息</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_commodity_examine.html">审核中的商品</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_commodity_exhibition.html">展示中的商品</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list on">
-                        <div class="tit">电商服务</div>
-                        <dl>
-                            <dd>
-                                <a href="enterprise_retailers_release.html">发布电商服务</a>
-                            </dd>
-                            <dd class="on">
-                                <a href="enterprise_retailers_examine.html">审核中的服务</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_retailers_exhibition.html">展示中的服务</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list">
-                        <div class="tit">招聘信息</div>
-                        <dl>
-                            <dd>
-                                <a href="enterprise_recruit_release.html">发布招聘信息</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_recruit_examine.html">审核中的招聘</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_recruit_exhibition.html">展示中的招聘</a>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
+                {% include './companyLeft.swig' %}
+                {{ companyLeft(8) }}
             </div>
             <div class="list_text">
                 <div class="list_cont">

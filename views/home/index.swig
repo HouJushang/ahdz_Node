@@ -418,55 +418,16 @@
                             </div>
                             <div class="recommend_end">
                                 <ul class="clr">
-
+                                    {% for key,val in companyList.rows %}
                                     <li>
-                                        <a href="recommend_list_details.html">
+                                        <a href="/companyContent/{{ val.id }}">
                                             <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_07.jpg" width="100%" height="100%">
+                                                <img src="{{ val.logo }}" width="100%" height="100%">
                                             </div>
-                                            <h2>安徽熊孩子食品</h2>
+                                            <h2>{{ val.companyName }}</h2>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="recommend_list_details.html">
-                                            <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_09.jpg" width="100%" height="100%">
-                                            </div>
-                                            <h2>芜湖三只松鼠</h2>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="recommend_list_details.html">
-                                            <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_15.jpg" width="100%" height="100%">
-                                            </div>
-                                            <h2>南国食品</h2>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="recommend_list_details.html">
-                                            <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_16.jpg" width="100%" height="100%">
-                                            </div>
-                                            <h2>汤圆妞妞食品</h2>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="recommend_list_details.html">
-                                            <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_17.jpg" width="100%" height="100%">
-                                            </div>
-                                            <h2>合肥春光食品</h2>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="recommend_list_details.html">
-                                            <div class="img">
-                                                <img src="/homeStatic/images/images/mytj_18.jpg" width="100%" height="100%">
-                                            </div>
-                                            <h2>芜湖国圣食品</h2>
-                                        </a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
@@ -481,56 +442,18 @@
                     </div>
                     <div class="index_recommend_end">
                         <ul class="clr">
+                            {% for key,val in productList.rows %}
                             <li>
                                 <a href="commodity_list_details.html">
                                     <div class="img">
-                                        <img src="/homeStatic/images/images/mytjxm_07.jpg" width="100%" height="100%">
+                                        <img src="{{ val.image }}" width="100%" height="100%">
                                     </div>
                                     <div class="text">
-                                        <div class="brief">纯手工莲子酥喜糖100g</div>
+                                        <div class="brief">{{ val.title }}</div>
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="commodity_list_details.html">
-                                    <div class="img">
-                                        <img src="/homeStatic/images/images/mytjxm_03.jpg" width="100%" height="100%">
-                                    </div>
-                                    <div class="text">
-                                        <div class="brief">双塔红薯粉条400g山东特产方便酸辣粉地瓜螺旋粉条</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="commodity_list_details.html">
-                                    <div class="img">
-                                        <img src="/homeStatic/images/images/mytjxm_05.jpg" width="100%" height="100%">
-                                    </div>
-                                    <div class="text">
-                                        <div class="brief">【岱山特产】蓬莱仙芝茶罐装125克</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="commodity_list_details.html">
-                                    <div class="img">
-                                        <img src="/homeStatic/images/images/mytjxm_09.jpg" width="100%" height="100%">
-                                    </div>
-                                    <div class="text">
-                                        <div class="brief">【岱山特产】艾草青团50g</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="commodity_list_details.html">
-                                    <div class="img">
-                                        <img src="/homeStatic/images/images/mytjxm_11.jpg" width="100%" height="100%">
-                                    </div>
-                                    <div class="text">
-                                        <div class="brief">【岱山特产】沙洋花生250gx6袋</div>
-                                    </div>
-                                </a>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -550,55 +473,20 @@
                             </div>
                             <div class="establish_end">
                                 <ul>
+                                    {% for key,val in category26 %}
                                     <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;【政策解读】商务部:农村电子商务人才如何培养? </div>
-                                            <div class="time">2018-02-20</div>
+                                        <a href="content/26/{{ val.id }}" class="clr">
+                                            <div class="title">● &nbsp;{{ val.title }} </div>
+                                            <div class="time">{{ val['createdAt'] | date('Y-m-d') }}</div>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;人大代表梁倩娟:加大电商扶贫政策扶持力</div>
-                                            <div class="time">2018-02-24</div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;安徽人才政策解读二:“泛3315计划”政策的“含金量</div>
-                                            <div class="time">2018-03-10</div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;电商人才舞台!江门将举办一个潜力巨大的职业竞赛</div>
-                                            <div class="time">2018-03-21</div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;安徽出台重磅引才政策人才最高安家补助可达200万</div>
-                                            <div class="time">2018-03-27</div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;2018全国两会,这些内容值得电商人关心</div>
-                                            <div class="time">2018-04-01</div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="news_details_4.html" class="clr">
-                                            <div class="title">● &nbsp;合肥出台重磅引才政策人才最高安家补助可达200万</div>
-                                            <div class="time">2018-05-05</div>
-                                        </a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="index_product">
                 <div class="w1200">
                     <div class="index_end_tab clr">
@@ -613,108 +501,36 @@
                         <div class="list">
                             <div class="list_table">
                                 <dl class="dl_rc">
+                                    {% for key,val in resumeList.rows %}
                                     <dd class="clr">
-                                        <a class="w10" href="information_details.html">**珊</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：安徽三联学院</a>
-                                        <a class="w20" href="information_details.html">专业：会计电算化</a>
-                                        <a class="w15" href="information_details.html">工作年限：2年</a>
-                                        <a class="w20" href="information_details.html">求职岗位：主办会计</a>
+                                        <a class="w10" href="information_details.html">{{ val.name }}</a>
+                                        {#<a class="w15" href="information_details.html">学历：{{ val.xueli }}</a>#}
+                                        {#<a class="w20" href="information_details.html">毕业院校：{{ val.school }}</a>#}
+                                        <a class="w20" href="information_details.html">专业：{{ val.zhuanye }}</a>
+                                        <a class="w15" href="information_details.html">工作年限：{{ val.jiangyan }}</a>
+                                        <a class="w20" href="information_details.html">求职岗位：{{ val.zhiwei }}</a>
                                     </dd>
-                                    <dd class="clr">
-                                        <a class="w10" href="information_details.html">**程</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：合肥工业大学</a>
-                                        <a class="w20" href="information_details.html">专业：土木工程</a>
-                                        <a class="w15" href="information_details.html">工作年限：3年</a>
-                                        <a class="w20" href="information_details.html">求职岗位：工程项目主管</a>
-                                    </dd>
-                                    <dd class="clr">
-                                        <a class="w10" href="information_details.html">**松</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：安徽财经大学</a>
-                                        <a class="w20" href="information_details.html">专业：会计电算化</a>
-                                        <a class="w15" href="information_details.html">工作年限：应届毕业生</a>
-                                        <a class="w20" href="information_details.html">求职岗位：会计</a>
-                                    </dd>
-                                    <dd class="clr">
-                                        <a class="w10" href="information_details.html">**珊</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：安徽三联学院</a>
-                                        <a class="w20" href="information_details.html">专业：会计电算化</a>
-                                        <a class="w15" href="information_details.html">工作年限：2年</a>
-                                        <a class="w20" href="information_details.html">求职岗位：主办会计</a>
-                                    </dd>
-                                    <dd class="clr">
-                                        <a class="w10" href="information_details.html">**程</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：合肥工业大学</a>
-                                        <a class="w20" href="information_details.html">专业：土木工程</a>
-                                        <a class="w15" href="information_details.html">工作年限：3年</a>
-                                        <a class="w20" href="information_details.html">求职岗位：工程项目主管</a>
-                                    </dd>
-                                    <dd class="clr">
-                                        <a class="w10" href="information_details.html">**松</a>
-                                        <a class="w15" href="information_details.html">学历：本科</a>
-                                        <a class="w20" href="information_details.html">毕业院校：安徽财经大学</a>
-                                        <a class="w20" href="information_details.html">专业：会计电算化</a>
-                                        <a class="w15" href="information_details.html">工作年限：应届毕业生</a>
-                                        <a class="w20" href="information_details.html">求职岗位：会计</a>
-                                    </dd>
+                                    {% endfor %}
                                 </dl>
                             </div>
                         </div>
                         <div class="list">
                             <div class="list_table">
                                 <dl class="clr">
+                                    {% for key,val in jobList.rows %}
                                     <dd>
                                         <a href="enterprise_details.html">
-                                            <div class="title">底薪3400急聘首批滴滴出行客服</div>
+                                            <div class="title">{{ val.title }}</div>
                                             <div class="dl_list clr">
-                                                <div class="dd">工作地点：合肥</div>
-                                                <div class="dd">学历要求：初中</div>
-                                                <div class="dd">性别要求：不限</div>
-                                                <div class="dd">专业要求：无</div>
-                                                <div class="dd">薪资：4000—5000元</div>
+                                                <div class="dd">工作地点：{{ val.address }}</div>
+                                                <div class="dd">学历要求：{{ val.xueli }}</div>
+                                                <div class="dd">工作性质：{{ val.xingzhi }}</div>
+                                                <div class="dd">招聘人数：{{ val.renshu }}</div>
+                                                <div class="dd">薪资：{{ val.xinchou }}</div>
                                             </div>
                                         </a>
                                     </dd>
-                                    <dd>
-                                        <a href="enterprise_details.html">
-                                            <div class="title">高薪招聘双休销售人员</div>
-                                            <div class="dl_list clr">
-                                                <div class="dd">工作地点：合肥</div>
-                                                <div class="dd">学历要求：大专</div>
-                                                <div class="dd">性别要求：不限</div>
-                                                <div class="dd">专业要求：无</div>
-                                                <div class="dd">薪资：3000—4000元</div>
-                                            </div>
-                                        </a>
-                                    </dd>
-                                    <dd>
-                                        <a href="enterprise_details.html">
-                                            <div class="title">底薪3400急聘首批滴滴出行客服</div>
-                                            <div class="dl_list clr">
-                                                <div class="dd">工作地点：合肥</div>
-                                                <div class="dd">学历要求：初中</div>
-                                                <div class="dd">性别要求：不限</div>
-                                                <div class="dd">专业要求：无</div>
-                                                <div class="dd">薪资：4000—5000元</div>
-                                            </div>
-                                        </a>
-                                    </dd>
-                                    <dd>
-                                        <a href="enterprise_details.html">
-                                            <div class="title">高薪招聘双休销售人员</div>
-                                            <div class="dl_list clr">
-                                                <div class="dd">工作地点：合肥</div>
-                                                <div class="dd">学历要求：大专</div>
-                                                <div class="dd">性别要求：不限</div>
-                                                <div class="dd">专业要求：无</div>
-                                                <div class="dd">薪资：3000—4000元</div>
-                                            </div>
-                                        </a>
-                                    </dd>
+                                    {% endfor %}
                                 </dl>
                             </div>
                         </div>
@@ -737,12 +553,9 @@
                                         <a href="/category/21" class="more fr">更多 &gt;</a>
                                     </div>
                                     <div class="list">
-                                        <a href="news_details_5.html">● &nbsp;合肥云聚职业培训学校</a>
-                                        <a href="news_details_5.html">● &nbsp;吉易跨境电商学院</a>
-                                        <a href="news_details_5.html">● &nbsp;青岛众智电商培训机构</a>
-                                        <a href="news_details_5.html">● &nbsp;幕思城专业的电商培训机构</a>
-                                        <a href="news_details_5.html">● &nbsp;合肥红杰尔电商学院网</a>
-                                        <a href="news_details_5.html">● &nbsp;合肥逐鹿电商学院</a>
+                                        {% for key,val in category21 %}
+                                            <a href="/content/21/{{ val.id }}">● &nbsp;{{ val.title }}</a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -753,39 +566,19 @@
                                         <a href="/category/23" class="more fr">更多 &gt;</a>
                                     </div>
                                     <div class="ren_list">
-                                        <a href="expert_details.html" class="clr">
+                                        {% for key,val in category23 %}
+                                        <a href="/content/23/{{ val.id }}" class="clr">
                                             <div class="img fl">
-                                                <img src="images/sb.jpg" width="100%" height="100%">
+                                                <img src="{{ val.thumb }}" width="100%" height="100%">
                                             </div>
                                             <div class="text">
                                                 <div class="cont">
-                                                    <h2>孙恺<i>| 大朴网 CEO</i></h2>
-                                                    <p>2007年创办库巴网，带领团队从0做到20亿规模。</p>
+                                                    <h2>{{ val.title }}<i>| {{ val.company }}</i></h2>
+                                                    <p>{{ val.description }}</p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="expert_details.html" class="clr">
-                                            <div class="img fl">
-                                                <img src="/homeStatic/images/images/rt_03.jpg" width="100%" height="100%">
-                                            </div>
-                                            <div class="text">
-                                                <div class="cont">
-                                                    <h2>赵迎光<i>| 韩都衣社 CEO</i></h2>
-                                                    <p>集团旗下拥有女装、男装、童装等20个子品牌</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="expert_details.html" class="clr">
-                                            <div class="img fl">
-                                                <img src="/homeStatic/images/images/rt_07.jpg" width="100%" height="100%">
-                                            </div>
-                                            <div class="text">
-                                                <div class="cont">
-                                                    <h2>林琛<i>| 拍拍网运营副总裁</i></h2>
-                                                    <p>原银泰网CEO。后任拍拍网副总裁</p>
-                                                </div>
-                                            </div>
-                                        </a>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -802,54 +595,18 @@
                     <div class="product_list">
                         <div class="list">
                             <ul class="clr">
+                                {% for key,val in category20 %}
                                 <li class="video_li">
                                     <div class="video">
-                                        <video class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%" poster="/homeStatic/images/images/spt_03.jpg" data-setup="{}">
-                                            <source src="scripts/mp4.mp4" type='video/mp4' />
-                                        </video>
+                                        <img src="{{ val.thumb }}" width="100%" height="100%" alt="">
                                     </div>
-                                    <a href="curriculum_details.html">
-                                        <div class="title">《十天学好电商》20161129期</div>
-                                        <div class="brief">零基础，低学历一样学好电商</div>
-                                        <div class="time">12月06日 13:34</div>
+                                    <a href="/content/20/{{ val.id }}">
+                                        <div class="title">{{ val.title }}</div>
+                                        <div class="brief">{{ val.description }}</div>
+                                        <div class="time">{{ item['createdAt'] | date('Y-m-d') }}</div>
                                     </a>
                                 </li>
-                                <li class="video_li">
-                                    <div class="video">
-                                        <video class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%" poster="/homeStatic/images/images/spt_05.jpg" data-setup="{}">
-                                            <source src="scripts/mp4.mp4" type='video/mp4' />
-                                        </video>
-                                    </div>
-                                    <a href="curriculum_details.html">
-                                        <div class="title">这些年关于电商那些事</div>
-                                        <div class="brief">信息社会，电商那些事你怎能不知道</div>
-                                        <div class="time">12月06日 13:34</div>
-                                    </a>
-                                </li>
-                                <li class="video_li">
-                                    <div class="video">
-                                        <video class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%" poster="/homeStatic/images/images/spt_07.jpg" data-setup="{}">
-                                            <source src="scripts/mp4.mp4" type='video/mp4' />
-                                        </video>
-                                    </div>
-                                    <a href="curriculum_details.html">
-                                        <div class="title">《快速学习电商》20161205期</div>
-                                        <div class="brief">电商课程名师课堂走进合肥</div>
-                                        <div class="time">12月06日 13:34</div>
-                                    </a>
-                                </li>
-                                <li class="video_li">
-                                    <div class="video">
-                                        <video class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%" poster="/homeStatic/images/images/spt_09.jpg" data-setup="{}">
-                                            <source src="scripts/mp4.mp4" type='video/mp4' />
-                                        </video>
-                                    </div>
-                                    <a href="curriculum_details.html">
-                                        <div class="title">《十天学好电商》20161215期</div>
-                                        <div class="brief">带你深度了解电商，离成功更进一步</div>
-                                        <div class="time">12月06日 13:34</div>
-                                    </a>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

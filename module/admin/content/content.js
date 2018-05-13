@@ -28,7 +28,7 @@ router.post('/admin/content/:categryId', async (ctx) => {
     try {
         const categoryResult = await getCategory(ctx.params.categryId);
         Object.assign(ctx.request.body, {
-            status : categoryResult.roleId != 0 ? 0 : 1,
+            status : 1,
             sysadd : 0, //网站后台人员
             addname: ctx.session.loginInfo.adminResult.username,
         })

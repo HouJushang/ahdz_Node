@@ -6,6 +6,10 @@ const getContentList = _loadQuery('content', 'getContentList')
 const getPositionContent = _loadQuery('content', 'getPositionContent')
 const positionContentForHome = _loadQuery('user', 'positionContentForHome')
 const getServiceListWithPage = _loadQuery('user', 'getServiceListWithPage')
+const getCompanyListWithPage = _loadQuery('user', 'getCompanyListWithPage')
+const getProductListWithPage = _loadQuery('user', 'getProductListWithPage')
+const getResumeListWithPage = _loadQuery('user', 'getResumeListWithPage')
+const getJobListWithPage = _loadQuery('user', 'getJobListWithPage')
 router.get('/', async (ctx) => {
     const category1 = getContentList('news', {categoryId: 1, status: 1}, {pageSize: 6});
     const category2 = getContentList('news', {categoryId: 2, status: 1}, {pageSize: 6});
@@ -35,7 +39,11 @@ router.get('/', async (ctx) => {
     const category19 = getContentList('slide', {categoryId: 19, status: 1}, {pageSize: 6});
     const category17 = getContentList('yuanqu', {categoryId: 17, status: 1}, {pageSize: 5});
     const category18 = getContentList('qiye', {categoryId: 18, status: 1}, {pageSize: 5});
+    const category26 = getContentList('news', {categoryId: 26, status: 1}, {pageSize: 7});
+    const category20 = getContentList('news', {categoryId: 20, status: 1}, {pageSize: 4})
 
+    const category21 = getContentList('news', {categoryId: 21, status: 1}, {pageSize: 6})
+    const category23 = getContentList('expert', {categoryId: 23, status: 1}, {pageSize: 3})
     const serviceList4 = getServiceListWithPage({leibie: '金融服务'}, {pageSize: 6})
     const serviceList5 = getServiceListWithPage({leibie: '电商代运营'}, {pageSize: 6})
     const serviceList6 = getServiceListWithPage({leibie: '营销推广'}, {pageSize: 6})
@@ -43,7 +51,10 @@ router.get('/', async (ctx) => {
     const serviceList8 = getServiceListWithPage({leibie: '物流服务'}, {pageSize: 6})
     const serviceList9 = getServiceListWithPage({leibie: 'IT互联网服务'}, {pageSize: 6})
 
-
+    const companyList = getCompanyListWithPage({}, {pageSize: 6});
+    const productList = getProductListWithPage({}, {pageSize: 5});
+    const resumeList = getResumeListWithPage({status: 1, isShow: 1}, {pageSize: 6})
+    const jobList = getJobListWithPage({status: 1, isShow: 1}, {pageSize: 4})
 
     var pageData = {
         homeLogin: ctx.session.homeLogin,
@@ -58,12 +69,14 @@ router.get('/', async (ctx) => {
         category3: await category3,
         category4: await category4,
         category7: await category7,
+        category21: await category21,
         yuanqu: await yuanqu,
         qiye: await qiye,
         position1: await position1,
         category19: await category19,
         category18: await category18,
         category17: await category17,
+        category26: await category26,
         servicePosition4: await servicePosition4,
         servicePosition5: await servicePosition5,
         servicePosition6: await servicePosition6,
@@ -76,6 +89,12 @@ router.get('/', async (ctx) => {
         serviceList7: await serviceList7,
         serviceList8: await serviceList8,
         serviceList9: await serviceList9,
+        companyList: await companyList,
+        productList: await productList,
+        resumeList: await resumeList,
+        jobList: await jobList,
+        category23: await category23,
+        category20: await category20
     }
     console.log(pageData.homeLogin)
     Object.assign(pageData, {

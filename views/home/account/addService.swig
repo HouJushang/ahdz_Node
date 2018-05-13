@@ -3,104 +3,65 @@
     <div class="list_wrap">
         <div class="w1200 clr">
             <div class="fl personnel_nav">
-                <div class="nav_top">
-                    <img src="images/zjzk_03.jpg" width="100%" height="100%">
-                    <p>我是端然成长</p>
-                </div>
-                <div class="nav_list">
-                    <div class="list">
-                        <div class="tit">基本资料</div>
-                        <dl>
-                            <dd>
-                                <a href="enterprise_account.html">账号信息</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_modify.html">修改密码</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_information.html">企业信息</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list on">
-                        <div class="tit">商品展示</div>
-                        <dl>
-                            <dd class="on">
-                                <a href="/account/addProduct">发布商品信息</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_commodity_examine.html">审核中的商品</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_commodity_exhibition.html">展示中的商品</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list">
-                        <div class="tit">电商服务</div>
-                        <dl>
-                            <dd>
-                                <a href="enterprise_retailers_release.html">发布电商服务</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_retailers_examine.html">审核中的服务</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_retailers_exhibition.html">展示中的服务</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="list">
-                        <div class="tit">招聘信息</div>
-                        <dl>
-                            <dd>
-                                <a href="enterprise_recruit_release.html">发布招聘信息</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_recruit_examine.html">审核中的招聘</a>
-                            </dd>
-                            <dd>
-                                <a href="enterprise_recruit_exhibition.html">展示中的招聘</a>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
+                {% include './avatarC.swig' %}
+                {% include './companyLeft.swig' %}
+                {{ companyLeft(7) }}
             </div>
             <div class="list_text">
-                <div class="list_cont">
-                    <div class="list_title"><i>发布商品信息</i></div>
-                    <div class="list_personal">
-                        <form id="addForm">
+                <form id="addForm">
+                    <div class="list_cont">
+                        <div class="list_title"><i>发布电商服务</i></div>
+                        <div class="list_personal">
+
                             <div class="clr">
-                                <div class="from_list fl w10 clr">
-                                    <div class="tit wd8 fl">产品名称：</div>
-                                    <div class="con">
-                                        <input type="text" class="titInput" name="title" placeholder="请输入产品名称">
-                                    </div>
-                                </div>
                                 <div class="from_list fl w45 clr">
-                                    <div class="tit wd8 fl">产品规格：</div>
+                                    <div class="tit wd8 fl">服务类别：</div>
                                     <div class="con">
-                                        <input type="text" name="guige" placeholder="请输入产品规格">
+                                        <select name="leibie">
+                                            <option value="金融服务">金融服务</option>
+                                            <option value="电商代运营">电商代运营</option>
+                                            <option value="营销推广">营销推广</option>
+                                            <option value="设计摄影">设计摄影</option>
+                                            <option value="物流服务">物流服务</option>
+                                            <option value="IT互联网服务">IT互联网服务</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="from_list fr w45 clr">
-                                    <div class="tit wd8 fl">产品产地：</div>
+                                    <div class="tit wd8 fl">服务范围：</div>
                                     <div class="con">
-                                        <input type="text" name="chandi" placeholder="请输入产品产地">
+                                        <input name="fanwei" type="text" placeholder="请输入服务范围">
                                     </div>
                                 </div>
                                 <div class="from_list fl w10 clr">
-                                    <div class="tit wd8 fl">购买链接：</div>
+                                    <div class="tit wd8 fl">服务名称：</div>
                                     <div class="con">
-                                        <input type="text" name="link" placeholder="请输入购买链接">
+                                        <input name="title" class="titInput" type="text" placeholder="请输入服务名">
+                                    </div>
+                                </div>
+                                <div class="from_list fl w10 clr">
+                                    <div class="tit wd8 fl">服务方式：</div>
+                                    <div class="con">
+                                        <input name="fanshi" type="text" placeholder="请输入服务方式">
+                                    </div>
+                                </div>
+                                <div class="from_list fl w10 clr">
+                                    <div class="tit wd8 fl">服务对象：</div>
+                                    <div class="con">
+                                        <input name="duixiang" type="text" placeholder="请输入服务对象">
+                                    </div>
+                                </div>
+                                <div class="from_list fl w10 clr">
+                                    <div class="tit wd8 fl">联系方式：</div>
+                                    <div class="con">
+                                        <input name="lianxi" type="text" placeholder="请输入联系方式">
                                     </div>
                                 </div>
                                 <div class="from_list fl w5 clr">
-                                    <div class="tit wd8 fl">产品主图：</div>
+                                    <div class="tit wd8 fl">服务主图：</div>
                                     <div class="con clr">
-                                        <input type="hidden" name="image" class="imgInput"/>
-                                        <img class="img_tx fl" id="avatarBox" src="/homeStatic/images/zetp_03.jpg" width="100%" height="100%">
+                                        <input type="hidden" name="image" class="imgInput">
+                                        <img class="img_tx fl" id="imgBox" src="/homeStatic/images/zetp_03.jpg" width="100%" height="100%">
                                         <div class="operation">
                                             <div class="btn" id="logo_web">上传图片</div>
                                             <p class="red">*建议上传正方形的图片</p>
@@ -108,19 +69,21 @@
                                     </div>
                                 </div>
                                 <div class="from_list fl w10 clr">
-                                    <div class="tit wd8 fl">商品详情：</div>
+                                    <div class="tit wd8 fl">服务详情：</div>
                                     <input type="hidden" name="content" class="conInput">
                                     <div class="con">
                                         <div id="myEditor"></div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <div class="button">
-                            <div class="btn saveBtn">保存</div>
+
+                            <div class="button">
+                                {#<div class="btn">取消</div>#}
+                                <div class="btn saveBtn">保存</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -132,9 +95,9 @@
     <script src="/homeStatic/scripts/webuploader.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            uploader("#logo_web","gif,jpg,jpeg,bmp,png","image/*",2,function(e){
+            uploader("#logo_web", "gif,jpg,jpeg,bmp,png", "image/*", 2, function (e) {
                 avatar = '/' + e.data.url;
-                $('#avatarBox').attr('src', avatar);
+                $('#imgBox').attr('src', avatar);
                 $('.imgInput').val(avatar);
             });
             $(".nav_list .list .tit").click(function () {
@@ -144,22 +107,22 @@
                 elementPathEnabled: false, //删除元素路径
                 wordCount: false    //删除字数统计
             });
-            $('.saveBtn').click(function(){
+            $('.saveBtn').click(function () {
                 $('.conInput').val(um.getContent())
-                if(!$('.titInput').val()){
-                    alert('产品名称必填！')
+                if (!$('.titInput').val()) {
+                    alert('服务名称必填！')
                     return false
                 }
                 $.ajax({
-                    url: "/account/addProduct",
+                    url: "/account/addService",
                     type: "POST",
                     dataType: "json",
                     data: $('#addForm').serializeArray(),
                     success: function (e) {
-                        if(e.code == "success"){
+                        if (e.code == "success") {
                             alert("添加成功")
                             // window.location.href = "/account/info"
-                        }else{
+                        } else {
                             alert(e.message);
                         }
                     }
