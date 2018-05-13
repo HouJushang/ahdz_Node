@@ -67,7 +67,11 @@
         {#</div>#}
         <div class="search clr">
             {#<a href="javascript:void(0)" class="url"></a>#}
-            <a href="javascript:void(0)" class="login">登录</a><em>|</em><a href="javascript:void(0)" class="register">注册</a>
+            {% if homeLogin %}
+                <a href="/account/info">{{ homeLogin.phone }}</a>
+            {% else %}
+                <a href="javascript:void(0)" class="login">登录</a><em>|</em><a href="javascript:void(0)" class="register">注册</a>
+            {% endif %}
         </div>
     </div>
 </header>

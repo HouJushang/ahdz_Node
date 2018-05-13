@@ -62,7 +62,7 @@ function uploader(sc_id,sc_suffix,sc_file,sc_size,sc_func){
         duplicate :true,
         fileSingleSizeLimit: sc_size * 1024 * 1024,
         swf: '../scripts/Uploader.swf',    //swf文件路径
-        server: "/ImageHelper/UploadMobile", // 文件接收服务端。
+        server: "/upload", // 文件接收服务端。
         pick: {// 选择文件的按钮
             id:sc_id,   
         },

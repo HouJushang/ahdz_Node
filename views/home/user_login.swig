@@ -295,8 +295,7 @@
             },
             success: function (e) {
                 if(e.code == "success"){
-                    //
-                    alert('登录成功')
+                    window.location.href = "/account/info"
                 }else{
                     alert(e.message);
                 }

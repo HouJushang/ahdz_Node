@@ -46,6 +46,7 @@ router.get('/', async (ctx) => {
 
 
     var pageData = {
+        homeLogin: ctx.session.homeLogin,
         slide10: await slide10,
         slide11: await slide11,
         slide12: await slide12,
@@ -76,6 +77,7 @@ router.get('/', async (ctx) => {
         serviceList8: await serviceList8,
         serviceList9: await serviceList9,
     }
+    console.log(pageData.homeLogin)
     Object.assign(pageData, {
         category1Top: pageData.category1.shift(),
         category2Top: pageData.category2.shift(),
