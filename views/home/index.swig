@@ -247,7 +247,7 @@
                                         <div class="text">入驻申请</div>
                                     </div>
                                 </a>
-                                <a href="enterprise_commodity_release.html" target="_blank" class="btn_2">
+                                <a href="/account/info" target="_blank" class="btn_2">
                                     <div class="cont">
                                         <div class="text">发布服务</div>
                                     </div>
@@ -406,7 +406,7 @@
                         </div>
                         <div class="entrance clr">
                             <a href="javascript:void(0)" class="register settled fl"><i>入驻申请</i></a>
-                            <a href="enterprise_commodity_release.html" class="release fr"><i>发布产品</i></a>
+                            <a href="/account/info" class="release fr"><i>发布产品</i></a>
                         </div>
                     </div>
 
@@ -414,7 +414,7 @@
                         <div class="conts recommend_conts">
                             <div class="recommend_top clr">
                                 <div class="name fl">电商名企</div>
-                                <a href="recommend_list.html" class="more fr">查看更多 &gt;</a>
+                                <a href="/company" class="more fr">查看更多 &gt;</a>
                             </div>
                             <div class="recommend_end">
                                 <ul class="clr">
@@ -444,7 +444,7 @@
                         <ul class="clr">
                             {% for key,val in productList.rows %}
                             <li>
-                                <a href="commodity_list_details.html">
+                                <a href="/productDetail/{{ val.id }}">
                                     <div class="img">
                                         <img src="{{ val.image }}" width="100%" height="100%">
                                     </div>
@@ -469,7 +469,7 @@
                         <div class="conts">
                             <div class="recommend_top clr">
                                 <div class="name rcfw_img fl">人才政策信息</div>
-                                <a href="personnel_list.html" class="more fr">查看更多 &gt;</a>
+                                <a href="/category/26" class="more fr">查看更多 &gt;</a>
                             </div>
                             <div class="establish_end">
                                 <ul>

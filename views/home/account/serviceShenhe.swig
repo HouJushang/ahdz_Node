@@ -48,8 +48,8 @@
                                     <td>{{ val['createdAt'] | date('Y-m-d') }}</td>
                                     <td>{{['待审核', '审核通过', '未通过'][val.status]}}</td>
                                     <td>
-                                        <a class="btn-toolbar" href="#">编辑</a>
-                                        <a class="btn-toolbar red" href="#">删除</a>
+                                        <a class="btn-toolbar" href="/account/editService/{{ val.id }}">编辑</a>
+                                        <a class="btn-toolbar delBtn red" idvalue="{{ val.id }}" href="javascript:;">删除</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -68,7 +68,27 @@
                 $(this).siblings("dl").slideDown().parents(".list").siblings(".list").find("dl").slideUp();
             });
 
-
+            $('.delBtn').click(function(){
+                var isClick = confirm("是否确认删除!");
+                if(!isClick){
+                    return false;
+                }
+                $.ajax({
+                    url: "/account/delService",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: $(this).attr('idvalue'),
+                    },
+                    success: function (e) {
+                        if(e.code == "success"){
+                            window.history.go(0)
+                        }else{
+                            alert(e.message);
+                        }
+                    }
+                })
+            })
         });
     </script>
 {% endblock %}

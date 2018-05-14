@@ -10,7 +10,8 @@ router.get('/content/:categoryId/:id', async (ctx) => {
     const content = await getContentById(categoryResult.model, ctx.params.id);
     const pageData = {
         categoryResult,
-        content
+        content,
+        homeLogin: ctx.session.homeLogin
     }
     ctx.body = ctx.body = await ctx.render(`home/${categoryResult.template}Content.swig`, pageData)
 })

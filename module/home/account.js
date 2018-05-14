@@ -23,7 +23,8 @@ const updateProductById = _loadQuery('user', 'updateProductById')
 const getProductById = _loadQuery('user', 'getProductById')
 const getJobById = _loadQuery('user', 'getJobById')
 const getServiceById = _loadQuery('user', 'getServiceById')
-
+const updateServiceById = _loadQuery('user', 'updateServiceById')
+const updateJobById = _loadQuery('user', 'updateJobById')
 router.all('/account', async (ctx, next) => {
     if(ctx.session.homeLogin == null){
         ctx.redirect('/')
@@ -33,7 +34,6 @@ router.all('/account', async (ctx, next) => {
 })
 
 router.get('/account/info', async (ctx) => {
-    console.log(ctx.session.homeLogin)
     if(ctx.session.homeLogin.type == 1){
         const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
         ctx.body = await ctx.render('home/account/companyInfo', {
@@ -321,13 +321,31 @@ router.get('/account/editJob/:id', async (ctx) => {
     }
     ctx.body = await ctx.render('home/account/addJob.swig', pageData)
 })
+
+router.post('/account/checkJob', async (ctx) => {
+
+    try {
+        const result = await updateJobById(ctx.request.body.id, ctx.request.body);
+        ctx.body = _successResponse('更新成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
 router.post('/account/addJob', async (ctx) => {
     try {
-        const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
-        ctx.request.body.status = 0;
-        ctx.request.body.companyId = comInfo.id;
-        const result = addJob(ctx.request.body);
-        ctx.body = _successResponse('内容添加成功', result);
+
+        if(ctx.request.body.id){
+            const result = await updateJobById(ctx.request.body.id, ctx.request.body);
+            ctx.body = _successResponse('更新成功', result);
+        }else{
+            const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+            ctx.request.body.status = 0;
+            ctx.request.body.companyId = comInfo.id;
+            const result = addJob(ctx.request.body);
+            ctx.body = _successResponse('内容添加成功', result);
+        }
+
+
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
@@ -372,6 +390,14 @@ router.post('/account/delService', async (ctx) => {
         ctx.body = _errorResponse(e.message)
     }
 })
+router.post('/account/checkService', async (ctx) => {
+    try {
+        const result = await serviceModel.update(ctx.request.body, { where: {id: ctx.request.body.id} })
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
 router.get('/account/editService/:id', async (ctx) => {
     const pageData = {
         homeLogin: ctx.session.homeLogin,
@@ -388,11 +414,17 @@ router.get('/account/addService', async (ctx) => {
 })
 router.post('/account/addService', async (ctx) => {
     try {
-        const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
-        ctx.request.body.status = 0;
-        ctx.request.body.companyId = comInfo.id;
-        const result = addService(ctx.request.body);
-        ctx.body = _successResponse('内容添加成功', result);
+        if(ctx.request.body.id){
+            const result = await updateServiceById(ctx.request.body.id, ctx.request.body);
+            ctx.body = _successResponse('更新成功', result);
+        }else{
+            const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+            ctx.request.body.status = 0;
+            ctx.request.body.companyId = comInfo.id;
+            const result = addService(ctx.request.body);
+            ctx.body = _successResponse('添加成功', result);
+        }
+
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }

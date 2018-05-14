@@ -45,9 +45,9 @@
             <div class="nav_list">
                 <a href="/?page=4" class="nav_a on">人才服务</a>
                 <div class="nav_list_con">
-                    <a href="information_list.html">人才信息</a>
-                    <a href="enterprise_list.html">企业招聘</a>
-                    <a href="personnel_list.html">人才政策</a>
+                    <a href="/resume">人才信息</a>
+                    <a href="/job">企业招聘</a>
+                    <a href="/category/26">人才政策</a>
                 </div>
             </div>
             <div class="nav_list">

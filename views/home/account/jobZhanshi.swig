@@ -46,10 +46,10 @@
                                     <td>{{ key+1 }}</td>
                                     <td>{{ val.title }}</td>
                                     <td>{{ val['createdAt'] | date('Y-m-d') }}</td>
-                                    <td>{{['待审核', '审核通过', '未通过'][val.status]}}</td>
+                                    <td>{{ ['停用', '展示'][val.isShow] }}</td>
                                     <td>
-                                        <a class="btn-toolbar" href="#">编辑</a>
-                                        <a class="btn-toolbar red" href="#">删除</a>
+                                        <a class="btn-toolbar isShowBtn" href="javascript:;" idvalue="{{ val.id }}" isShow="{{ val.isShow }}">{{ ['启用', '禁用'][val.isShow] }}</a>
+                                        <a class="btn-toolbar red delBtn" href="javascript:;" idvalue="{{ val.id }}">删除</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -68,7 +68,46 @@
                 $(this).siblings("dl").slideDown().parents(".list").siblings(".list").find("dl").slideUp();
             });
 
+            $('.isShowBtn').click(function(){
+                $.ajax({
+                    url: "/account/checkJob",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: $(this).attr('idvalue'),
+                        isShow:  $(this).attr('isShow') == 0 ? 1 : 0,
+                    },
+                    success: function (e) {
+                        if(e.code == "success"){
+                            window.history.go(0)
+                        }else{
+                            alert(e.message);
+                        }
+                    }
+                })
+            })
 
+            $('.delBtn').click(function(){
+                var isClick = confirm("是否确认删除!");
+                if(!isClick){
+                    return false;
+                }
+                $.ajax({
+                    url: "/account/delJob",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: $(this).attr('idvalue'),
+                    },
+                    success: function (e) {
+                        if(e.code == "success"){
+                            window.history.go(0)
+                        }else{
+                            alert(e.message);
+                        }
+                    }
+                })
+            })
         });
     </script>
 {% endblock %}

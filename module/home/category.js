@@ -9,7 +9,8 @@ router.get('/category/:categoryId', async (ctx) => {
     const list = getContentList(categoryResult.model, {categoryId: categoryResult.id, status: 1}, {pageSize: 8});
     const pageData = {
         category: categoryResult,
-        list: await list
+        list: await list,
+        homeLogin: ctx.session.homeLogin,
     }
     ctx.body = ctx.body = await ctx.render(`home/${categoryResult.template}List`, pageData)
 })
