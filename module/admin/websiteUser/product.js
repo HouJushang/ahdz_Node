@@ -7,7 +7,7 @@ const getProductById = _loadQuery('user', 'getProductById')
 const addProduct = _loadQuery('user', 'addProduct')
 const delProductById = _loadQuery('user', 'delProductById');
 const updateProductById = _loadQuery('user', 'updateProductById');
-
+const productModel = _loadModel('websiteUser', 'product')
 
 router.post('/admin/listProduct', async (ctx) => {
     try {
@@ -59,3 +59,15 @@ router.delete('/admin/product', async (ctx) => {
     }
 })
 
+router.put('/admin/checkProduct', async (ctx) => {
+    try {
+        var result = await productModel.update({status:  ctx.request.body.status}, {where: {id: ctx.request.body.id}})
+        if (result) {
+            ctx.body = _successResponse('内容更新成功', result);
+        } else {
+            ctx.body = _errorResponse('内容更新失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})

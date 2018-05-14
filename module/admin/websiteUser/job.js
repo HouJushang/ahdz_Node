@@ -7,7 +7,7 @@ const getJobById = _loadQuery('user', 'getJobById')
 const addJob = _loadQuery('user', 'addJob')
 const delJobById = _loadQuery('user', 'delJobById');
 const updateJobById = _loadQuery('user', 'updateJobById');
-
+const jobModel = _loadModel('websiteUser', 'job')
 
 router.post('/admin/listJob', async (ctx) => {
     try {
@@ -59,3 +59,15 @@ router.delete('/admin/job', async (ctx) => {
     }
 })
 
+router.put('/admin/checkJob', async (ctx) => {
+    try {
+        var result = await jobModel.update({status:  ctx.request.body.status}, {where: {id: ctx.request.body.id}})
+        if (result) {
+            ctx.body = _successResponse('内容更新成功', result);
+        } else {
+            ctx.body = _errorResponse('内容更新失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})

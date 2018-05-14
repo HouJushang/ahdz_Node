@@ -7,7 +7,7 @@ const getResumeById = _loadQuery('user', 'getResumeById')
 const addResume = _loadQuery('user', 'addResume')
 const delResumeById = _loadQuery('user', 'delResumeById');
 const updateResumeById = _loadQuery('user', 'updateResumeById');
-
+const resumeModel = _loadModel('websiteUser', 'resume')
 
 router.post('/admin/listResume', async (ctx) => {
     try {
@@ -59,3 +59,15 @@ router.delete('/admin/resume', async (ctx) => {
     }
 })
 
+router.put('/admin/checkResume', async (ctx) => {
+    try {
+        var result = await resumeModel.update({status:  ctx.request.body.status}, {where: {id: ctx.request.body.id}})
+        if (result) {
+            ctx.body = _successResponse('内容更新成功', result);
+        } else {
+            ctx.body = _errorResponse('内容更新失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
