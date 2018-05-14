@@ -2,7 +2,7 @@
  * Created by hou on 2018/4/15.
  */
 const router = require('../../router');
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const getCategory = _loadQuery('category', 'getCategoryById')
 const getContentListWithPage = _loadQuery('content', 'getContentListWithPage')
 const getContentById = _loadQuery('content', 'getContentById')

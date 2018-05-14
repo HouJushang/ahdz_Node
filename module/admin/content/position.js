@@ -2,7 +2,7 @@
  * Created by hou on 2018/4/15.
  */
 const router = require('../../router');
-const Sequelize = require('Sequelize')
+const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const positionModel = _loadModel('content', 'position');
 const defaultUrl = '/admin/position';
