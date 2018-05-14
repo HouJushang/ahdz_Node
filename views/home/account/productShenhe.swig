@@ -36,7 +36,7 @@
                             <table>
                                 <tr>
                                     <th width="5%">序号</th>
-                                    <th width="40%">商品</th>
+                                    <th width="40%">产品名称</th>
                                     <th width="20%">创建时间</th>
                                     <th width="10%">状态</th>
                                     <th width="25%">操作</th>
@@ -48,8 +48,8 @@
                                     <td>{{ val['createdAt'] | date('Y-m-d') }}</td>
                                     <td>{{['待审核', '审核通过', '未通过'][val.status]}}</td>
                                     <td>
-                                        <a class="btn-toolbar" href="#">编辑</a>
-                                        <a class="btn-toolbar red" href="#">删除</a>
+                                        <a class="btn-toolbar" href="/account/editProduct/{{ val.id }}">编辑</a>
+                                        <a class="btn-toolbar red delBtn" href="javascript:;" idvalue="{{ val.id }}">删除</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -68,6 +68,27 @@
                 $(this).siblings("dl").slideDown().parents(".list").siblings(".list").find("dl").slideUp();
             });
 
+            $('.delBtn').click(function(){
+                var isClick = confirm("是否确认删除!");
+                if(!isClick){
+                    return false;
+                }
+                $.ajax({
+                    url: "/account/delProduct",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: $(this).attr('idvalue'),
+                    },
+                    success: function (e) {
+                        if(e.code == "success"){
+                            window.history.go(0)
+                        }else{
+                            alert(e.message);
+                        }
+                    }
+                })
+            })
 
         });
     </script>

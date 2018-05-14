@@ -36,7 +36,7 @@
                             <table>
                                 <tr>
                                     <th width="5%">序号</th>
-                                    <th width="40%">招聘</th>
+                                    <th width="40%">招聘名称</th>
                                     <th width="20%">创建时间</th>
                                     <th width="10%">状态</th>
                                     <th width="25%">操作</th>

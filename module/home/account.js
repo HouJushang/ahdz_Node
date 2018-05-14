@@ -4,7 +4,6 @@ const updatePersonByUserId = _loadQuery('user', 'updatePersonByUserId')
 const updateCompanyByUserId = _loadQuery('user', 'updateCompanyByUserId')
 const addPerson = _loadQuery('user', 'addPerson')
 const updateUserById = _loadQuery('user', 'updateUserById')
-const addResume = _loadQuery('user', 'addResume')
 const getResumeListWithPage = _loadQuery('user', 'getResumeListWithPage')
 const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
 const getProductListWithPage = _loadQuery('user', 'getProductListWithPage')
@@ -16,6 +15,14 @@ const serviceModel = _loadModel('websiteUser', 'service')
 const addProduct = _loadQuery('user', 'addProduct')
 const addJob = _loadQuery('user', 'addJob')
 const addService = _loadQuery('user', 'addService')
+const addResume = _loadQuery('user', 'addResume')
+const updateResumeById = _loadQuery('user', 'updateResumeById')
+const getResumeById = _loadQuery('user', 'getResumeById')
+const resumeMode = _loadModel('websiteUser', 'resume')
+const updateProductById = _loadQuery('user', 'updateProductById')
+const getProductById = _loadQuery('user', 'getProductById')
+const getJobById = _loadQuery('user', 'getJobById')
+const getServiceById = _loadQuery('user', 'getServiceById')
 
 router.all('/account', async (ctx, next) => {
     if(ctx.session.homeLogin == null){
@@ -75,7 +82,7 @@ router.get('/account/resume', async (ctx) => {
 })
 router.get('/account/resumeM', async (ctx) => {
     const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
-    const result = await getResumeListWithPage({personId: psersonInfo.id}, ctx.request.body.pageInfo);
+    const result = await getResumeListWithPage({personId: psersonInfo.id},{pageSize: 1000});
     ctx.body = await ctx.render('home/account/personalResumeM.swig', {
         homeLogin: ctx.session.homeLogin,
         psersonInfo,
@@ -165,13 +172,47 @@ router.post('/account/savePassWord', async (ctx) => {
 
 router.post('/account/addResume', async (ctx) => {
     try {
-        ctx.request.body.status = 0;
-        const result = await addResume(ctx.request.body);
-        ctx.body = _successResponse('内容添加成功', result);
+        //简历不需要审核
+        const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
+        ctx.request.body.status = 1;
+        ctx.request.body.personId = psersonInfo.id;
+        if(ctx.request.body.id){
+            const result = await updateResumeById(ctx.request.body.id, ctx.request.body);
+            ctx.body = _successResponse('更新成功', result);
+        }else{
+            const result = await addResume(ctx.request.body);
+            ctx.body = _successResponse('添加成功', result);
+        }
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
 })
+router.post('/account/checkResume', async (ctx) => {
+    try {
+        const result = await resumeMode.update(ctx.request.body, { where: {id: ctx.request.body.id} })
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.post('/account/delResume', async (ctx) => {
+    try {
+        const result = await resumeMode.destroy({where: {id: ctx.request.body.id}})
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.get('/account/editResume/:id', async (ctx) => {
+    const pageData = {
+        homeLogin: ctx.session.homeLogin,
+        detail: await getResumeById(ctx.params.id)
+    }
+    ctx.body = await ctx.render('home/account/personalResume.swig', pageData)
+})
+
 
 router.get('/account/addProduct', async (ctx) => {
     const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
@@ -180,13 +221,48 @@ router.get('/account/addProduct', async (ctx) => {
         psersonInfo,
     })
 })
+
+router.get('/account/editProduct/:id', async (ctx) => {
+    const pageData = {
+        homeLogin: ctx.session.homeLogin,
+        detail: await getProductById(ctx.params.id)
+    }
+    ctx.body = await ctx.render('home/account/addProduct.swig', pageData)
+})
+
+router.post('/account/delProduct', async (ctx) => {
+    try {
+        const result = await productModel.destroy({where: {id: ctx.request.body.id}})
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
 router.post('/account/addProduct', async (ctx) => {
+
     try {
         const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
+        //需要审核
         ctx.request.body.status = 0;
         ctx.request.body.companyId = comInfo.id;
-        const result = addProduct(ctx.request.body);
-        ctx.body = _successResponse('内容添加成功', result);
+
+        if(ctx.request.body.id){
+            const result = await updateProductById(ctx.request.body.id, ctx.request.body);
+            ctx.body = _successResponse('更新成功', result);
+        }else{
+            const result = await addProduct(ctx.request.body);
+            ctx.body = _successResponse('添加成功', result);
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+router.post('/account/checkProduct', async (ctx) => {
+
+    try {
+        const result = await updateProductById(ctx.request.body.id, ctx.request.body);
+        ctx.body = _successResponse('更新成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
@@ -230,6 +306,21 @@ router.get('/account/addJob', async (ctx) => {
         psersonInfo,
     })
 })
+router.post('/account/delJob', async (ctx) => {
+    try {
+        const result = await jobModel.destroy({where: {id: ctx.request.body.id}})
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+router.get('/account/editJob/:id', async (ctx) => {
+    const pageData = {
+        homeLogin: ctx.session.homeLogin,
+        detail: await getJobById(ctx.params.id)
+    }
+    ctx.body = await ctx.render('home/account/addJob.swig', pageData)
+})
 router.post('/account/addJob', async (ctx) => {
     try {
         const comInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
@@ -272,6 +363,21 @@ router.get('/account/jobZhanshi', async (ctx) => {
         psersonInfo,
         list
     })
+})
+router.post('/account/delService', async (ctx) => {
+    try {
+        const result = await serviceModel.destroy({where: {id: ctx.request.body.id}})
+        ctx.body = _successResponse('成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+router.get('/account/editService/:id', async (ctx) => {
+    const pageData = {
+        homeLogin: ctx.session.homeLogin,
+        detail: await getServiceById(ctx.params.id)
+    }
+    ctx.body = await ctx.render('home/account/addService.swig', pageData)
 })
 router.get('/account/addService', async (ctx) => {
     const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
