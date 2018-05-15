@@ -139,7 +139,7 @@
             return;
         }
         $.ajax({
-            url: "http://localhost:3000/smscode",
+            url: "/smscode",
             type: "POST",
             dataType: "json",
             data: {
@@ -167,7 +167,7 @@
             return;
         }
         $.ajax({
-            url: "http://localhost:3000/smscode",
+            url: "/smscode",
             type: "POST",
             dataType: "json",
             data: {
@@ -218,7 +218,7 @@
             return false
         }
         $.ajax({
-            url: "http://localhost:3000/register/company",
+            url: "/register/company",
             type: "POST",
             dataType: "json",
             data: {
@@ -251,7 +251,7 @@
             return false
         }
         $.ajax({
-            url: "http://localhost:3000/register/person",
+            url: "/register/person",
             type: "POST",
             dataType: "json",
             data: {
@@ -283,7 +283,7 @@
             return false
         }
         $.ajax({
-            url: "http://localhost:3000/register/login",
+            url: "/register/login",
             type: "POST",
             dataType: "json",
             data: {
@@ -304,7 +304,7 @@
 
     function getSvg(idTag){
         $.ajax({
-            url: "http://localhost:3000/captcha",
+            url: "/captcha",
             type: "GET",
             dataType: "json",
             success: function (e) {
