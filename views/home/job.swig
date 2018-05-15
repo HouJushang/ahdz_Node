@@ -5,7 +5,7 @@
         <div class="w1200 clr">
             <div class="fl list_nav">
                 <div class="list_top">
-                    <img src="images/rcfw.png" width="100%" height="100%">
+                    <img src="/homeStatic/images/rcfw.png" width="100%" height="100%">
                     <div class="pos">
                         <h2>人才服务</h2>
                         <p>帮助您快速找到工作</p>

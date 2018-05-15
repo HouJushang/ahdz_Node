@@ -27,7 +27,7 @@
                     <span>微信咨询</span>
                 </a>
                 <div class="con wx">
-                    <img src="/homeStatic/images//homeStatic/images/ewm.png" width="100%" height="100%;">
+                    <img src="/homeStatic/images/images/ewm.png" width="100%" height="100%;">
                 </div>
             </li>
         </ul>

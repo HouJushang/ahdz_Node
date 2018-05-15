@@ -3,9 +3,9 @@
 
         <div class="list_wrap">
             <div class="w1200 clr">
-                <div class="crumbs">
-                    当前位置：<a href="index">首页</a> &gt; <a href="personnel.html">人才服务</a> &gt; 企业招聘
-                </div>
+                {#<div class="crumbs">#}
+                    {#当前位置：<a href="index">首页</a> &gt; <a href="personnel.html">人才服务</a> &gt; 企业招聘#}
+                {#</div>#}
                 <div class="personnels_cont">
                     <h2 class="title">{{ detail.title }}</h2>
                     <div class="clr brief">

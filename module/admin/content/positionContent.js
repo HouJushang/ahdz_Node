@@ -5,10 +5,10 @@ const router = require('../../router');
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const positionContentModel = _loadModel('content', 'positionContent');
+const positionContentForId = _loadQuery('comm', 'positionContentForId')
 const defaultUrl = '/admin/positionContent';
 router.get(defaultUrl, async (ctx) => {
     try {
-        console.log( ctx.request.body);
         const result = await positionContentModel.findAll({where: ctx.request.query});
         ctx.body = _successResponse('列表获取成功', result);
     } catch (e) {
@@ -48,4 +48,14 @@ router.delete(defaultUrl, async (ctx) => {
         ctx.body = _errorResponse(e.message)
     }
 })
+
+router.get('/admin/positionContent/:id', async (ctx) => {
+    try {
+        const result = await positionContentForId(ctx.params.id);
+        ctx.body = _successResponse('列表获取成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
 

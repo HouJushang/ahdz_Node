@@ -250,11 +250,11 @@ $(function(){
     });
 
     $(".login_back .con_1 .btn").click(function(){
-        $(".login_back .con_1").hide().siblings(".con_2").show();
+        // $(".login_back .con_1").hide().siblings(".con_2").show();
     });
 
     $(".login_back .con_2 .btn").click(function(){
-        $(".login_back .con_2").hide().siblings(".con_3").show();
+        // $(".login_back .con_2").hide().siblings(".con_3").show();
     });
 
     $(".login_cont .btn").click(function(){

@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="nav_list">
-                <a href="/?page=4" class="nav_a on">人才服务</a>
+                <a href="/?page=4" class="nav_a">人才服务</a>
                 <div class="nav_list_con">
                     <a href="/resume">人才信息</a>
                     <a href="/job">企业招聘</a>
@@ -54,17 +54,11 @@
                 <a href="/?page=5" class="nav_a">课程培训</a>
                 <div class="nav_list_con">
                     <a href="/category/20">精品课程</a>
-                    <a href="/category/21">专家智库</a>
-                    <a href="/category/23">电商培训机构</a>
+                    <a href="/category/21">电商培训机构</a>
+                    <a href="/category/23">专家智库</a>
                 </div>
             </div>
         </div>
-        {#<div class="show_search">#}
-            {#<div class="cont">#}
-                {#<input type="text" placeholder="请输入搜索内容" />#}
-                {#<i></i>#}
-            {#</div>#}
-        {#</div>#}
         <div class="search clr">
             {#<a href="javascript:void(0)" class="url"></a>#}
             {% if homeLogin %}

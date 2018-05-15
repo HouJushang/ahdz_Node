@@ -48,3 +48,42 @@ router.post('/smscode', async (ctx) => {
         ctx.body = _errorResponse(e.message);
     }
 })
+router.post('/smscode2', async (ctx) => {
+    const mobile = ctx.request.body.phone;
+    const code = RndNum(4);
+    ctx.session.smscode = code;
+    try {
+        const urlStr = `http://120.76.213.253:8888/sms.aspx?userid=1033&account=sqt&password=ctuiLdsp&mobile=${mobile}&content=验证码为${code}【安商】&action=send`;
+        const sendPromise = new Promise((resolve, reject) => {
+            request({
+                url: encodeURI(urlStr),
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+            }, function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    resolve("成功")
+                }else{
+                    reject("发送失败")
+                }
+            });
+        })
+        const result = await sendPromise;
+        ctx.body = _successResponse(result,{});
+
+    } catch (e) {
+        ctx.body = _errorResponse(e.message);
+    }
+})
+router.post('/checkSmsCode', async (ctx) => {
+    try {
+        if (ctx.request.body.code == ctx.session.smscode) {
+            ctx.body = _successResponse("发送成功");
+        }else{
+            ctx.body = _errorResponse("发送失败");
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message);
+    }
+})

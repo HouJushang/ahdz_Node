@@ -54,8 +54,8 @@
                 <p class="nav_a">课程培训</p>
                 <div class="nav_list_con">
                     <a href="/category/20">精品课程</a>
-                    <a href="/category/21">专家智库</a>
-                    <a href="/category/23">电商培训机构</a>
+                    <a href="/category/21">电商培训机构</a>
+                    <a href="/category/23">专家智库</a>
                 </div>
             </div>
         </div>

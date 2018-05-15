@@ -46,7 +46,7 @@
                         <a href="/content/2/{{ category2Top.id }}">
                             <h2 class="title">{{ category2Top['title'] }}</h2>
                             <div class="brief">
-                                {{ category1Top['description'] }}
+                                {{ category2Top['description'] }}
                             </div>
                         </a>
                     {% endif %}
@@ -73,7 +73,7 @@
                         <a href="/content/2/{{ category3Top.id }}">
                             <h2 class="title">{{ category3Top['title'] }}</h2>
                             <div class="brief">
-                                {{ category1Top['description'] }}
+                                {{ category3Top['description'] }}
                             </div>
                         </a>
                     {% endif %}
@@ -100,7 +100,7 @@
                     <a href="/content/2/{{ category4Top.id }}">
                         <h2 class="title">{{ category4Top['title'] }}</h2>
                         <div class="brief">
-                            {{ category1Top['description'] }}
+                            {{ category4Top['description'] }}
                         </div>
                     </a>
                 {% endif %}

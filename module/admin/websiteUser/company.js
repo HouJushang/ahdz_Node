@@ -4,12 +4,23 @@
 const router = require('../../router');
 const getCompanyByUserId = _loadQuery('user', 'getCompanyByUserId')
 const updateCompanyByUserId = _loadQuery('user', 'updateCompanyByUserId')
+const getCompanyListWithPage = _loadQuery('user', 'getCompanyListWithPage')
 const addCompany = _loadQuery('user', 'addCompany')
 
 router.get('/admin/companyById/:userId', async (ctx) => {
     try {
         const result = await getCompanyByUserId(ctx.params.userId);
         ctx.body = _successResponse('企业信息获取成功', result);
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
+
+router.post('/admin/companyList', async (ctx) => {
+    try {
+        const result = await getCompanyListWithPage({}, ctx.request.body.pageInfo);
+        ctx.body = _successResponse('获取成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }

@@ -26,6 +26,7 @@ const getServiceById = _loadQuery('user', 'getServiceById')
 const updateServiceById = _loadQuery('user', 'updateServiceById')
 const updateJobById = _loadQuery('user', 'updateJobById')
 router.all('/account', async (ctx, next) => {
+    console.log(11111)
     if(ctx.session.homeLogin == null){
         ctx.redirect('/')
     }else {
@@ -34,13 +35,13 @@ router.all('/account', async (ctx, next) => {
 })
 
 router.get('/account/info', async (ctx) => {
-    if(ctx.session.homeLogin.type == 1){
+    if(ctx.session.homeLogin && ctx.session.homeLogin.type == 1){
         const psersonInfo = await getCompanyByUserId(ctx.session.homeLogin.id)
         ctx.body = await ctx.render('home/account/companyInfo', {
             homeLogin: ctx.session.homeLogin,
             psersonInfo,
         })
-    }else if (ctx.session.homeLogin.type == 0){
+    }else if (ctx.session.homeLogin && ctx.session.homeLogin.type == 0){
         const psersonInfo = await getPersonByUserId(ctx.session.homeLogin.id)
         ctx.body = await ctx.render('home/account/personInfo', {
             homeLogin: ctx.session.homeLogin,

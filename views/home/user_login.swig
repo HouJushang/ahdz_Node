@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <div class="remember clr">
-                    <div class="pass on fl">记住密码</div>
-                    <a href="#" class="fr">忘记密码</a>
+                    <div class="pass on fl jizhumima">记住密码</div>
+                    <a href="javascript:;" class="fr backPassBtn">忘记密码</a>
                 </div>
                 <div class="btn loginBtn">登录</div>
                 <div class="new">新用户账号<a>注册</a></div>
@@ -26,25 +26,25 @@
             <div class="tit">找回密码</div>
             <div class="con con_1">
                 <div class="list list_4">
-                    <input type="text" placeholder="输入手机号">
+                    <input type="text" class="phone4"  placeholder="输入手机号">
                 </div>
                 <div class="list yzm list_6">
-                    <input type="text" placeholder="输入短信验证码">
+                    <input type="text" class="passSmsCode" placeholder="输入短信验证码">
                     <div class="operation">
-                        <div class="obtain">获取验证码</div>
+                        <div class="obtain obtain4">获取验证码</div>
                         <div class="already hide">已发送(<em>60</em>)s</div>
                     </div>
                 </div>
-                <div class="btn">确定</div>
+                <div class="btn checkCodeBtn">确定</div>
             </div>
             <div class="con con_2">
                 <div class="list list_2">
-                    <input type="text" placeholder="输入新密码">
+                    <input type="password" class="newPassword1" placeholder="输入新密码">
                 </div>
                 <div class="list list_8">
-                    <input type="text" placeholder="再次输入新密码">
+                    <input type="password" class="newPassword2" placeholder="再次输入新密码">
                 </div>
-                <div class="btn">确定</div>
+                <div class="btn newPassBtn">确定</div>
             </div>
             <div class="con con_3">
                 <h2>密码修改成功！</h2>
@@ -126,6 +126,17 @@
 </section>
 <script>
     var phoneReg = /^1[0-9]{10}$/;
+    var newPassPhone = "";
+    var newPassCode = "";
+
+    $('.loginPhone').val(window.localStorage.getItem('phone'));
+    $('.loginPassword').val(window.localStorage.getItem('password'));
+
+
+    $('.backPassBtn').click(function(){
+        $('.login_cont').hide()
+        $('.login_back').show()
+    });
     $(".obtain3").click(function(){
         var phone = $('.company_phone').val();
         var code = $(".code3").val();
@@ -155,6 +166,83 @@
             }
         })
     });
+
+    $('.newPassBtn').click(function(){
+
+        // todo 验证
+        if(!($('.newPassword1').val().length >= 6)){
+            alert('密码必须大于等于6位');
+            return
+        }
+        if(!($('.newPassword1').val() == $('.newPassword2').val())){
+            alert('两次密码必须一致');
+            return
+        }
+
+        $.ajax({
+            url: "/newPassWord",
+            type: "POST",
+            dataType: "json",
+            data: {
+                password: $('.newPassword1').val(),
+                phone: newPassPhone,
+                code: newPassCode,
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    alert('修改成功');
+                    window.history.go(0)
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    })
+
+    $(".obtain4").click(function(){
+        var phone = $('.phone4').val();
+        if(!phoneReg.test(phone)){
+            alert("手机号格式不正确");
+            return;
+        }
+        $.ajax({
+            url: "/smscode2",
+            type: "POST",
+            dataType: "json",
+            data: {
+                phone: phone,
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    showTime();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    });
+
+    $(".checkCodeBtn").click(function(){
+        $.ajax({
+            url: "/checkSmsCode",
+            type: "POST",
+            dataType: "json",
+            data: {
+                code: $('.passSmsCode').val(),
+            },
+            success: function (e) {
+                if(e.code == "success"){
+                    newPassPhone =$('.phone4').val()
+                    newPassCode = $('.passSmsCode').val()
+                    $('.login_back .con_1').hide();
+                    $('.login_back .con_2').show();
+                }else{
+                    alert(e.message);
+                }
+            }
+        })
+    })
+
     $(".person_obtain").click(function(){
         var phone = $('.person_phone').val();
         var code = $(".person_code").val();
@@ -293,6 +381,15 @@
             },
             success: function (e) {
                 if(e.code == "success"){
+                    if($('.jizhumima').hasClass('on')){
+                        window.localStorage.setItem('phone', $('.loginPhone').val());
+                        window.localStorage.setItem('password', $('.loginPassword').val());
+                    }else{
+                        window.localStorage.removeItem('phone')
+                        window.localStorage.removeItem('password')
+                    }
+
+
                     window.location.href = "/account/info"
                 }else{
                     alert(e.message);
