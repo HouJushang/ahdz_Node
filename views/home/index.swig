@@ -174,7 +174,7 @@
                                 <li>
                                     <a href="/content/{{ val.categoryId }}/{{ val.id }}">
                                         <div class="img">
-                                            <img src="{{ val.image }}" width="100%" height="100%">
+                                            <img src="{{ val.thumb }}" width="100%" height="100%">
                                         </div>
                                         <div class="text">
                                             <h2 class="title">{{ val.title }}</h2>
@@ -190,7 +190,7 @@
                                 <li>
                                     <a href="/content/{{ val.categoryId }}/{{ val.id }}">
                                         <div class="img">
-                                            <img src="{{ val.image }}" width="100%" height="100%">
+                                            <img src="{{ val.thumb }}" width="100%" height="100%">
                                         </div>
                                         <div class="text">
                                             <h2 class="title">{{ val.title }}</h2>
@@ -601,7 +601,7 @@
                                     <a href="/content/20/{{ val.id }}">
                                         <div class="title">{{ val.title }}</div>
                                         <div class="brief">{{ val.description }}</div>
-                                        <div class="time">{{ item['createdAt'] | date('Y-m-d') }}</div>
+                                        <div class="time">{{ val['createdAt'] | date('Y-m-d') }}</div>
                                     </a>
                                 </li>
                                 {% endfor %}
