@@ -162,7 +162,7 @@
                                 {% for key, val in category19 %}
                                     <li class="establish_li">
                                         <a href="{{ val.link }}" target="_blank">
-                                            <div class="cont" style="background: url({{ val.image }}) left center no-repeat;" >{{ val.title }}</div>
+                                            <div class="cont" style="background: url({{ val.image }}) left center no-repeat; background-size: 50px 50px !important;" >{{ val.title }}</div>
                                         </a>
                                     </li>
                                 {% endfor %}
