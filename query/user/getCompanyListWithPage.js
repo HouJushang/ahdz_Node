@@ -7,8 +7,6 @@ module.exports = function (filter = {},  pageInfo = {currentPage: 1, pageSize: 1
         offset: (newPageInfo.currentPage - 1) * newPageInfo.pageSize,
         limit: newPageInfo.pageSize,
         order: order,
-        include: [{
-            model: userModel
-        }]
+        include: [userModel]
     });
 }

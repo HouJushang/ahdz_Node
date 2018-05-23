@@ -77,6 +77,18 @@
                                     </div>
                                 </div>
                                 <div class="from_list fr w5 clr">
+                                    <div class="tit wd14 fl">毕业学校：</div>
+                                    <div class="con">
+                                        <input type="text" value="{{ detail.school }}" name="school" placeholder="请输入毕业学校">
+                                    </div>
+                                </div>
+                                <div class="from_list fr w5 clr">
+                                    <div class="tit wd14 fl">学历：</div>
+                                    <div class="con">
+                                        <input type="text" value="{{ detail.xueli }}" name="xueli" placeholder="请输入学历">
+                                    </div>
+                                </div>
+                                <div class="from_list fr w5 clr">
                                     <div class="tit wd14 fl">专业：</div>
                                     <div class="con">
                                         <input type="text" value="{{ detail.zhuanye }}" name="zhuanye" placeholder="请输入专业">

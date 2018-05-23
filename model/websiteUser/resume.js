@@ -13,6 +13,8 @@ const Resume = sequelize.define('resume', {
     shengao: {type: Sequelize.STRING, allowNull: true},
     jiehun: {type: Sequelize.INTEGER, allowNull: true},
     zhuanye: {type: Sequelize.STRING, allowNull: true},
+    school: {type: Sequelize.STRING, allowNull: true},
+    xueli: {type: Sequelize.STRING, allowNull: true},
     jiangyan: {type: Sequelize.STRING, allowNull: true},
     phone: {type: Sequelize.STRING, allowNull: true},
     email: {type: Sequelize.STRING, allowNull: true},

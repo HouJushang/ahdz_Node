@@ -23,10 +23,10 @@
                         <div class="tit">我的简历</div>
                         <dl>
                             <dd>
-                                <a href="personal_resume.html">创建简历</a>
+                                <a href="/account/resume">创建简历</a>
                             </dd>
                             <dd>
-                                <a href="personal_administration.html">简历管理</a>
+                                <a href="/account/resumeM">简历管理</a>
                             </dd>
                         </dl>
                     </div>

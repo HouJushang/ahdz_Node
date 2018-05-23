@@ -503,10 +503,12 @@
                                 <dl class="dl_rc">
                                     {% for key,val in resumeList.rows %}
                                     <dd class="clr">
-                                        <a class="w10" href="information_details.html">{{ val.name }}</a>
-                                        <a class="w20" href="information_details.html">专业：{{ val.zhuanye }}</a>
-                                        <a class="w15" href="information_details.html">工作年限：{{ val.jiangyan }}</a>
-                                        <a class="w20" href="information_details.html">求职岗位：{{ val.zhiwei }}</a>
+                                        <a class="w10" href="/resume/{{ val.id }}">{{ val.name }}</a>
+                                        <a class="w20" href="/resume/{{ val.id }}">学校：{{ val.school }}</a>
+                                        <a class="w15" href="/resume/{{ val.id }}">学历：{{ val.xueli }}</a>
+                                        <a class="w20" href="/resume/{{ val.id }}">专业：{{ val.zhuanye }}</a>
+                                        <a class="w15" href="/resume/{{ val.id }}">工作年限：{{ val.jiangyan }}</a>
+                                        <a class="w20" href="/resume/{{ val.id }}">求职岗位：{{ val.zhiwei }}</a>
                                     </dd>
                                     {% endfor %}
                                 </dl>

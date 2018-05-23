@@ -7,7 +7,11 @@ const Op = Sequelize.Op
 const getUserListWithPage = _loadQuery('user', 'getUserListWithPage');
 const countUserByWhere = _loadQuery('user', 'countUserByWhere');
 const addUser = _loadQuery('user', 'addUser');
+const addCompany = _loadQuery('user', 'addCompany');
+const addPerson = _loadQuery('user', 'addPerson');
 const delUserByWhere = _loadQuery('user', 'delUserByWhere');
+const delPersonByWhere = _loadQuery('user', 'delPersonByWhere');
+const delCompanyByWhere = _loadQuery('user', 'delCompanyByWhere');
 const updateUserById = _loadQuery('user', 'updateUserById')
 const defaultUrl = '/admin/websiteUser';
 router.get(defaultUrl, async (ctx) => {
@@ -25,8 +29,16 @@ router.post(defaultUrl, async (ctx) => {
             ctx.body = _errorResponse('该手机号码已经存在', result);
             return false;
         }
-        var result = await addUser(ctx.request.body);
-        ctx.body = _successResponse('用户添加成功', result);
+        if(ctx.request.body.type == 0){
+            var result = await addUser(ctx.request.body);
+            await addPerson({userId: result.id})
+            ctx.body = _successResponse('用户添加成功', result);
+        }
+        if(ctx.request.body.type == 1){
+            var result = await addUser(ctx.request.body);
+            await addCompany({userId: result.id})
+            ctx.body = _successResponse('用户添加成功', result);
+        }
     } catch (e) {
         ctx.body = _errorResponse(e.message)
     }
@@ -50,8 +62,9 @@ router.put(defaultUrl, async (ctx) => {
 })
 router.delete(defaultUrl, async (ctx) => {
     try {
-        const result = await delUserByWhere(ctx.request.query)
-        if(result) {
+        const result = await delUserByWhere({id: ctx.request.query.userId})
+        const result2= await delPersonByWhere({id: ctx.request.query.id})
+        if(result && result2) {
             ctx.body = _successResponse('用户删除成功', result);
         }else{
             ctx.body = _errorResponse('用户删除失败');
@@ -60,4 +73,19 @@ router.delete(defaultUrl, async (ctx) => {
         ctx.body = _errorResponse(e.message)
     }
 })
+
+router.delete('/admin/websiteUser2', async (ctx) => {
+    try {
+        const result = await delUserByWhere({id: ctx.request.query.userId})
+        const result2= await delCompanyByWhere({id: ctx.request.query.id})
+        if(result && result2) {
+            ctx.body = _successResponse('用户删除成功', result);
+        }else{
+            ctx.body = _errorResponse('用户删除失败');
+        }
+    } catch (e) {
+        ctx.body = _errorResponse(e.message)
+    }
+})
+
 
