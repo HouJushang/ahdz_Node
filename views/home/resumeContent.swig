@@ -1,5 +1,8 @@
 ﻿{% extends 'layout.swig'  %}
 {% block content %}
+    <style>
+        .list .title{text-align: left}
+    </style>
     <div class="list_wrap">
         <div class="w1200 clr">
             {#<div class="crumbs">#}
@@ -33,8 +36,7 @@
                         </div>
                         <div class="clr">
                             <p>求职状况：{{ detail.zhuangtai }}</p>
-                            <p>联系地址：{{ detail.address }}</p>
-                            <p></p>
+                            <p style="width: 70%">联系地址：{{ detail.address }}</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +45,7 @@
                     <div class="clr">
                         <p>期望薪资：{{ detail.xinzi }}</p>
                         <p>地点：{{ detail.didian }}</p>
-                        <p>职能/职位：{{ deail.zhiwei }}</p>
+                        <p>职能/职位：{{ detail.zhiwei }}</p>
                     </div>
                     <div class="clr">
                         <p>行业：{{ detail.hangye }}</p>
@@ -76,6 +78,7 @@
                 </div>
                 <div class="list">
                     <div class="title title_4">培训经历</div>
+                    {% for key,val in detail.peixun %}
                     <div class="clr">
                         <p>时间：{{ val.startTime }}-{{ val.endTime }}</p>
                         <p>培训课程：{{ val.kecheng }}</p>
@@ -86,6 +89,7 @@
                             培训内容：{{ val.content }}
                         </p>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

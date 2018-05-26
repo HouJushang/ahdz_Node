@@ -9,12 +9,12 @@
             <div class="details_brief service_brief clr">
                 <div class="details_brief_left clr">
                     <div class="img fl">
-                        <img src="images/images/mytjxm_07.jpg" width="100%" height="100%">
+                        <img src="{{ detail.image }}" width="100%" height="100%">
                     </div>
                     <div class="text">
                         <h2>{{ detail.title }}</h2>
                         <p>价格： <i class="cff3">{{ detail.jiage }}</i></p>
-                        <p>产品规格：{{ detial.guige }}</p>
+                        <p>产品规格：{{ detail.guige }}</p>
                         <p>产品产地：{{ detail.chandi }}</p>
                         <a href="{{ detail.link }}" class="commodity_more">我要购买</a>
                     </div>

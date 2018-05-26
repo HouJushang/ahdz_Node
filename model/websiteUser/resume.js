@@ -25,6 +25,7 @@ const Resume = sequelize.define('resume', {
     zhiwei: {type: Sequelize.STRING, allowNull: true},
     hangye: {type: Sequelize.STRING, allowNull: true},
     shijian: {type: Sequelize.STRING, allowNull: true},
+    avatar: {type: Sequelize.STRING, allowNull: true},
     leixing: {type: Sequelize.STRING, allowNull: true},
     status: {type: Sequelize.INTEGER, allowNull: false},  // [待审核，审核通过，未通过]
     isShow: {type: Sequelize.INTEGER, allowNull: true, defaultValue: 0} //['不显示', '显示']
