@@ -13,7 +13,7 @@
                         <div class="list_end">
                             <ul>
                                 <li>
-                                    <a href="/company">电商企业</a>
+                                    <a href="/companyds">电商企业</a>
                                 </li>
                                 <li class="on">
                                     <a href="/product">商品展示</a>

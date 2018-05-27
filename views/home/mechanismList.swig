@@ -23,14 +23,14 @@
                             {% for key, val in list %}
                                 <li class="clr">
                                     <div class="fl img">
-                                        <img src="{{ val.thumb }}" width="100%" height="100%">
+                                        <img src="{{ val.logo }}" width="100%" height="100%">
                                     </div>
                                     <div class="text">
-                                        <a href="{{ '/content/' + category.id + '/' + val.id }}" class="title">{{ val.title }}</a>
+                                        <a href="/companyContent/{{ val.id }}" class="title">{{ val.companyName }}</a>
                                         <div class="brief">
                                             {{ val.description }}
                                         </div>
-                                        <a href="{{ '/content/' + category.id + '/' + val.id }}" class="more">查看详情</a>
+                                        <a href="/companyContent/{{ val.id }}" class="more">查看详情</a>
                                     </div>
                                 </li>
                             {% endfor %}

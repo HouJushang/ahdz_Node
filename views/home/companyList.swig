@@ -13,7 +13,7 @@
                         <div class="list_end">
                             <ul>
                                 <li class="on">
-                                    <a href="/company">电商企业</a>
+                                    <a href="/companyds">电商企业</a>
                                 </li>
                                 <li>
                                     <a href="/product">商品展示</a>
@@ -27,7 +27,7 @@
                             <div class="list_con">
                                 <div class="service_list">
                                     <ul class="recommend_ul">
-                                        {% for key, val in list.rows %}
+                                        {% for key, val in list %}
                                             <li class="clr dsqy_li">
                                                 <div class="fl img">
                                                     <img src="{{ val.logo }}" width="100%" height="100%">

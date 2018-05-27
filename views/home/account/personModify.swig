@@ -96,7 +96,6 @@
                 password: password,
             },
             success: function (e) {
-                console.log(e)
                 if(e.code == "success"){
                     alert('修改成功')
                     window.history.go(0);
