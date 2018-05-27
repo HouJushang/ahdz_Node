@@ -16,6 +16,7 @@ require('./content/positionContent');
 require('./contentModel/news');
 require('./contentModel/slide');
 require('./contentModel/yuanqu');
+require('./contentModel/video');
 require('./contentModel/qiye');
 require('./contentModel/expert');
 

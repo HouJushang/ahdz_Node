@@ -42,7 +42,9 @@ router.get('/', async (ctx) => {
     const category26 = getContentList('news', {categoryId: 26, status: 1}, {pageSize: 7});
     const category20 = getContentList('news', {categoryId: 20, status: 1}, {pageSize: 4})
 
-    const category21 = getContentList('news', {categoryId: 21, status: 1}, {pageSize: 6})
+    const hotDs = positionContentForHome(12)
+
+
     const category23 = getContentList('expert', {categoryId: 23, status: 1}, {pageSize: 3})
     const serviceList4 = getServiceListWithPage({leibie: '金融服务'}, {pageSize: 6})
     const serviceList5 = getServiceListWithPage({leibie: '电商代运营'}, {pageSize: 6})
@@ -69,7 +71,7 @@ router.get('/', async (ctx) => {
         category3: await category3,
         category4: await category4,
         category7: await category7,
-        category21: await category21,
+        hotDs: await hotDs,
         yuanqu: await yuanqu,
         qiye: await qiye,
         position1: await position1,
@@ -96,7 +98,7 @@ router.get('/', async (ctx) => {
         category23: await category23,
         category20: await category20
     }
-    console.log(pageData.homeLogin)
+    console.log(pageData.servicePosition4)
     Object.assign(pageData, {
         category1Top: pageData.category1.shift(),
         category2Top: pageData.category2.shift(),

@@ -42,7 +42,7 @@ router.put(defaultUrl, async (ctx) => {
 })
 router.delete(defaultUrl, async (ctx) => {
     try {
-        const result = await positionContentModel.destroy({where: ctx.request.query})
+        const result = await positionContentModel.destroy({where: {id: ctx.request.query.id }})
         ctx.body = _successResponse('删除成功', result);
     } catch (e) {
         ctx.body = _errorResponse(e.message)

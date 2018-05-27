@@ -11,7 +11,9 @@
             <div class="personnels_cont">
                 <div class="clr information_list">
                     <div class="img fl">
-                        <img src="/homeStatic/images/rdtx_03.jpg" width="100%" height="100%">
+                        {% if detail.avatar %}
+                            <img src="{{ detail.avatar }}" width="100%" height="100%">
+                        {% endif %}
                     </div>
                     <div class="text">
                         <div class="title clr">

@@ -220,23 +220,23 @@
                                     <div class="service_list">
                                         <div class="list">
                                             <a href="/service/金融服务" class="name">金融服务</a>
-                                            <a href="/serviceContent/{{ servicePosition4.id }}" class="text">{{ servicePosition4.title }}</a>
+                                            <a href="/companyContent/{{ servicePosition4.id }}" class="text">{{ servicePosition4.companyName }}</a>
                                         </div>
                                         <div class="list">
                                             <a href="/service/电商代运营" class="name">电商代运营</a>
-                                            <a href="/serviceContent/{{ servicePosition5.id }}" class="text">{{ servicePosition5.title }}</a>
+                                            <a href="/companyContent/{{ servicePosition5.id }}" class="text">{{ servicePosition5.companyName }}</a>
                                         </div>
                                         <div class="list">
                                             <a href="/service/营销推广" class="name">营销推广</a>
-                                            <a href="/serviceContent/{{ servicePosition6.id }}" class="text">{{ servicePosition6.title }}</a>
+                                            <a href="/companyContent/{{ servicePosition6.id }}" class="text">{{ servicePosition6.companyName }}</a>
                                         </div>
                                         <div class="list">
                                             <a href="/service/物流服务" class="name">物流服务</a>
-                                            <a href="/serviceContent/{{ servicePosition8.id }}" class="text">{{ servicePosition7.title }}</a>
+                                            <a href="/companyContent/{{ servicePosition8.id }}" class="text">{{ servicePosition7.companyName }}</a>
                                         </div>
                                         <div class="list">
                                             <a href="/service/IT互联网服务" class="name">IT/互联网服务</a>
-                                            <a href="/serviceContent/{{ servicePosition9.id }}" class="text">{{ servicePosition9.title }}</a>
+                                            <a href="/companyContent/{{ servicePosition9.id }}" class="text">{{ servicePosition9.companyName }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -550,11 +550,11 @@
                                 <div class="contss">
                                     <div class="tit clr">
                                         <div class="name fl">热门电商培训机构</div>
-                                        <a href="/category/21" class="more fr">更多 &gt;</a>
+                                        <a href="/companyps" class="more fr">更多 &gt;</a>
                                     </div>
                                     <div class="list">
-                                        {% for key,val in category21 %}
-                                            <a href="/content/21/{{ val.id }}">● &nbsp;{{ val.title }}</a>
+                                        {% for key,val in hotDs %}
+                                            <a href="/companyContent/{{ val.id }}">● &nbsp;{{ val.companyName }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>

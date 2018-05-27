@@ -38,6 +38,18 @@
                     <form id="addForm">
                         <input type="hidden" name="id" value="{{ detail.id }}">
                         <div class="list_personal">
+                            <div class="basic_title"><i>*</i>头像</div>
+                                <div class="con clr">
+                                    <input type="hidden" name="avatar" value="{{ detail.avatar }}" id="avatarInput">
+                                    {% if detail.avatar %}
+                                        <img class="img_tx fl" src="{{ detail.avatar }}" id="avatarBox" width="250" height="320">
+                                    {% else %}
+                                        <img class="img_tx fl" src="" id="avatarBox" width="250" height="320" style="display: none;">
+                                    {% endif %}
+                                    <div class="operation">
+                                        <div class="btn" id="logo_web" style="padding: 5px; background-color: #409EFF; display: inline-block; border-radius: 3px; color: #fff; font-size: 12px; margin-top: 10px;">上传图片</div>
+                                    </div>
+                                </div>
                             <div class="basic_title"><i>*</i>基本信息</div>
                             <div class="clr">
                                 <div class="from_list fl w5 clr">
@@ -382,6 +394,7 @@
         </script>
     {% endraw %}
     {#<script src="/homeStatic/scripts/My97DatePicker/WdatePicker.js"></script>#}
+    <script src="/homeStatic/scripts/webuploader.min.js"></script>
     <script src="/homeStatic/scripts/handlebars.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -427,6 +440,13 @@
                 $('.peixunContent').append(html);
                 peixunIndex++
             }){% if !detail %}.trigger('click');{% endif %}
+
+            var avatar = "";
+            uploader("#logo_web","gif,jpg,jpeg,bmp,png","image/*",2,function(e){
+                avatar = e.data.url;
+                $('#avatarBox').attr('src', '/' + avatar).show();
+                $('#avatarInput').val('/' + avatar)
+            });
 
             $('.saveForm').click(function(){
                 $.ajax({

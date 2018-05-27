@@ -12,7 +12,9 @@
                 </div>
                 <div class="content">
                     <div class="video">
-                        {% autoescape %}{{ content.content }}{% endautoescape %}
+                        <video src="{{ content.video }}" controls="controls" style="width: 100%; height: 100%">
+                            您的浏览器不支持 video 标签。
+                        </video>
                     </div>
                 </div>
 
