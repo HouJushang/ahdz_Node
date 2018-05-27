@@ -38,7 +38,7 @@
             <div class="nav_list">
                 <a href="/?page=3" class="nav_a">电商优选</a>
                 <div class="nav_list_con">
-                    <a href="/company">电商企业</a>
+                    <a href="/companyds">电商企业</a>
                     <a href="/product">商品展示</a>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <a href="/?page=5" class="nav_a">课程培训</a>
                 <div class="nav_list_con">
                     <a href="/category/20">精品课程</a>
-                    <a href="/category/21">电商培训机构</a>
+                    <a href="/companyps">电商培训机构</a>
                     <a href="/category/23">专家智库</a>
                 </div>
             </div>

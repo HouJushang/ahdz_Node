@@ -414,7 +414,7 @@
                         <div class="conts recommend_conts">
                             <div class="recommend_top clr">
                                 <div class="name fl">电商名企</div>
-                                <a href="/company" class="more fr">查看更多 &gt;</a>
+                                <a href="/companyds" class="more fr">查看更多 &gt;</a>
                             </div>
                             <div class="recommend_end">
                                 <ul class="clr">
