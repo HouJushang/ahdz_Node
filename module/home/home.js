@@ -42,7 +42,7 @@ router.get('/', async (ctx) => {
     const category26 = getContentList('news', {categoryId: 26, status: 1}, {pageSize: 7});
     const category20 = getContentList('news', {categoryId: 20, status: 1}, {pageSize: 4})
 
-    const hotDs = positionContentForHome(12)
+    // const hotDs = positionContentForHome(12)
 
 
     const category23 = getContentList('expert', {categoryId: 23, status: 1}, {pageSize: 3})
@@ -71,7 +71,7 @@ router.get('/', async (ctx) => {
         category3: await category3,
         category4: await category4,
         category7: await category7,
-        hotDs: await hotDs,
+        // hotDs: await hotDs,
         yuanqu: await yuanqu,
         qiye: await qiye,
         position1: await position1,
